@@ -1,0 +1,59 @@
+:root {
+  --bukarka-black: #1e1e1e;
+  --bukarka-white: #fffbff;
+  --bukarka-yellow: #ffdc00;
+  --bukarka-orange: #ff8a10;
+  --bukarka-blue: #004f98;
+  --bukarka-dark-grey: #7c7165;
+  --bukarka-light-grey-1: #dad3cd;
+  --bukarka-light-grey-2: #efece9;
+  --bukarka-blue-heart: #3d7efd;
+}
+
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url("../public/fonts/Montserrat-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat-Medium";
+  src: url("../public/fonts/Montserrat-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat-Semibold";
+  src: url("../public/fonts/Montserrat-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url("../public/fonts/Montserrat-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat-Extrabold";
+  src: url("../public/fonts/Montserrat-ExtraBold.ttf");
+  font-weight: 900;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* todo  DELETE */
+h1 {
+  text-align: center;
+}
+/* todo  DELETE */

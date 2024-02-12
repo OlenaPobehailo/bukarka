@@ -1,0 +1,27 @@
+import styled from 'styled-components';
+
+export const StyledCommonWrapper = styled.div`
+  /* max-width: 375px;
+  padding-left: 20px;
+  padding-right: 20px; */
+  margin-left: auto;
+  margin-right: auto;
+
+  /* @media screen and (min-width: 768px) {
+    max-width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
+  } */
+
+  @media screen and (min-width: 1440px) {
+    max-width: 1296px;
+    padding-left: 72px;
+    padding-right: 72px;
+  }
+`;
+
+
+
+export const PageWrapper = styled.div`
+margin-top: 104px;
+`
