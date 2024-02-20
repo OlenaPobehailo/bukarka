@@ -1,7 +1,11 @@
-import React from "react";
 import { StyledCatalog } from "./Catalog.styled";
 
-const Catalog = ({ open }) => {
+export interface CatalogProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+const Catalog: React.FC<CatalogProps> = ({ open }) => {
   return (
     <StyledCatalog open={open}>
       <h1>Тут буде каталог</h1>

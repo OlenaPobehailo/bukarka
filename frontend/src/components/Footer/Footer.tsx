@@ -9,7 +9,7 @@ import {
 } from "./Footer.styled";
 import Contacts from "components/Contacts";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <StyledFooter>
       <Wrapper>

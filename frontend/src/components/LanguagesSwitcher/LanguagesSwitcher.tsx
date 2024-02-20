@@ -1,6 +1,6 @@
 import { Button, Separator, StyledSwitcher } from "./LanguagesSwitcher,styled";
 
-const LanguagesSwitcher = () => {
+const LanguagesSwitcher: React.FC = () => {
   return (
     <StyledSwitcher>
       <Button

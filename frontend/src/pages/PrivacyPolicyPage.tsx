@@ -1,14 +1,13 @@
 import { PageWrapper, StyledCommonWrapper } from "styles/CommonStyled";
 
-
-const HomePage = () => {
+const PrivacyPolicyPage : React.FC= () => {
   return (
     <StyledCommonWrapper>
       <PageWrapper>
-        <h1>HomePage</h1>
+        <h1>Політика конфіденційності</h1>
       </PageWrapper>
     </StyledCommonWrapper>
   );
 };
 
-export default HomePage;
+export default PrivacyPolicyPage;

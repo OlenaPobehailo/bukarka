@@ -1,14 +1,13 @@
-import React from "react";
 import { PageWrapper, StyledCommonWrapper } from "styles/CommonStyled";
 
-const BookClubPage = () => {
+const ContactsPage: React.FC = () => {
   return (
     <StyledCommonWrapper>
       <PageWrapper>
-        <h1>Book Club</h1>
+        <h1>Контакти і зворотний зв’язок</h1>
       </PageWrapper>
     </StyledCommonWrapper>
   );
 };
 
-export default BookClubPage;
+export default ContactsPage;
