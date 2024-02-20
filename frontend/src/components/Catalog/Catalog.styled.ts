@@ -23,7 +23,12 @@ const slideIn = keyframes`
     transform: translateY(0);
   }
 `;
-export const StyledCatalog = styled.div`
+
+interface StyledCatalogProps {
+  open: boolean;
+}
+
+export const StyledCatalog = styled.div<StyledCatalogProps>`
   position: fixed;
   top: 104px;
   left: 0;

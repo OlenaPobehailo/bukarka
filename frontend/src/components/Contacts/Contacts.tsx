@@ -8,7 +8,7 @@ import {
 } from "assets/icons";
 import { ContactList, ListItem } from "./Contacts.styled";
 
-const Contacts = () => {
+const Contacts: React.FC = () => {
   return (
     <ContactList>
       <ListItem>

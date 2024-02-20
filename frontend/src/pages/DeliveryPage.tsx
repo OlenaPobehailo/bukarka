@@ -1,7 +1,6 @@
-import React from "react";
 import { PageWrapper, StyledCommonWrapper } from "styles/CommonStyled";
 
-const DeliveryPage = () => {
+const DeliveryPage : React.FC= () => {
   return (
     <StyledCommonWrapper>
       <PageWrapper>

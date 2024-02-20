@@ -1,8 +1,7 @@
 import { AvatarIcon, CartIcon, HeartIcon } from "assets/icons";
-import React from "react";
 import { IconWrapper, StyledUserMenu, UserMenuItem } from "./UserMenu.styled";
 
-const UserMenu = () => {
+const UserMenu: React.FC = () => {
   return (
     <StyledUserMenu>
       <UserMenuItem>
@@ -18,7 +17,7 @@ const UserMenu = () => {
         </IconWrapper>
         <p>Кошик</p>
       </UserMenuItem>
-      
+
       <UserMenuItem>
         <IconWrapper>
           <AvatarIcon />
