@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledCommonWrapper = styled.div`
   /* max-width: 375px;
@@ -20,8 +20,7 @@ export const StyledCommonWrapper = styled.div`
   }
 `;
 
-
-
 export const PageWrapper = styled.div`
-margin-top: 104px;
-`
+  margin-top: 104px;
+  min-height: calc(75vh);
+`;

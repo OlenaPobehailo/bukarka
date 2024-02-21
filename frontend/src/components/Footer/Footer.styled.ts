@@ -2,9 +2,9 @@ import { LogoUkr } from "assets/icons";
 import styled from "styled-components";
 
 export const StyledFooter = styled.footer`
-  position: fixed;
+  /* position: fixed;
   bottom: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
 
   background-color: var(--bukarka-light-grey-2);
