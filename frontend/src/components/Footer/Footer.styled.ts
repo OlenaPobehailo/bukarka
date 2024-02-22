@@ -2,15 +2,15 @@ import { LogoUkr } from "assets/icons";
 import styled from "styled-components";
 
 export const StyledFooter = styled.footer`
-  position: fixed;
+  /* position: fixed;
   bottom: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
 
   background-color: var(--bukarka-light-grey-2);
   padding: 48px 104px 24px;
   box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.25);
-  z-index: 2;
+  /* z-index: 2; */
 `;
 
 export const Wrapper = styled.div`
