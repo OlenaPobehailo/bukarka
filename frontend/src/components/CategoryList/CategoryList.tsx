@@ -1,3 +1,5 @@
+import { StyledBlock, StyledItem, Title } from "./CategoryList.styled";
+
 interface Category {
   [key: string]: Category[] | string[];
 }
@@ -8,21 +10,21 @@ interface CategoryListProps {
 
 const renderCategory = (category: Category | string, index: number) => {
   if (typeof category === "string") {
-    return <li key={index}>{category}</li>;
+    return <StyledBlock key={index}>{category}</StyledBlock>;
   } else {
     return (
-      <li key={index}>
-        {Object.entries(category).map(([title, books]) => (
+      <StyledBlock key={index}>
+        {Object.entries(category).map(([title, links]) => (
           <div key={title}>
-            <h4>{title}</h4>
+            <Title>{title}</Title>
             <ul>
-              {(books as string[]).map((book: string, bookIndex: number) => (
-                <li key={bookIndex}>{book}</li>
+              {(links as string[]).map((link: string, linkIndex: number) => (
+                <StyledItem key={linkIndex}>{link}</StyledItem>
               ))}
             </ul>
           </div>
         ))}
-      </li>
+      </StyledBlock>
     );
   }
 };

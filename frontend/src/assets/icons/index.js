@@ -9,3 +9,5 @@ export { ReactComponent as CartIcon } from "./cart-icon.svg";
 export { ReactComponent as AvatarIcon } from "./avatar-icon.svg";
 export { ReactComponent as EmailIcon } from "./mail-icon.svg";
 export { ReactComponent as PhoneIcon } from "./phone-icon.svg";
+
+export { ReactComponent as CrossIcon } from "./cross-icon.svg";

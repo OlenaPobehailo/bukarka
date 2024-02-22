@@ -12,7 +12,7 @@ export const StyledHeader = styled.div`
   background-color: var(--bukarka-light-grey-2);
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
 
-  z-index: 2;
+  z-index: 1;
 `;
 
 export const Wrapper = styled.div`

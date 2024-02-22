@@ -14,12 +14,17 @@ import {
 import LanguagesSwitcher from "components/LanguagesSwitcher";
 import Catalog from "components/Catalog";
 import { BurgerIcon } from "assets/icons";
+import Modal from "components/Modal";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -42,7 +47,11 @@ const Header: React.FC = () => {
           <LanguagesSwitcher />
         </Wrapper>
       </StyledHeader>
-      {isOpen && <Catalog open={isOpen} onClose={toggleModal} />}
+      {isOpen && (
+        <Modal close={closeModal} showCloseButton={false} >
+          <Catalog />
+        </Modal>
+      )}
     </>
   );
 };

@@ -22,5 +22,5 @@ export const StyledCommonWrapper = styled.div`
 
 export const PageWrapper = styled.div`
   margin-top: 104px;
-  min-height: calc(75vh);
+  /* min-height: calc(75vh); */
 `;

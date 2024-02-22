@@ -1,40 +1,54 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
-const slideIn = keyframes`
-/* 0% {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  50% {
-    opacity: 0;
-    transform: translateY(110px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  } */
-
-  from {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+export const Wrapper = styled.div`
+  width: 1024px;
+  padding: 32px 89px;
 `;
 
-interface StyledCatalogProps {
-  open: boolean;
-}
+export const StyledCatalog = styled.ul`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-content: space-around;
+  height: 85vh;
+  /* overflow: auto; */
+`;
 
-export const StyledCatalog = styled.div<StyledCatalogProps>`
-  position: fixed;
-  top: 104px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  z-index: 1;
-  animation: ${slideIn} 0.3s ease forwards;
+export const Item = styled.li`
+  /* flex: 0 0 calc(33.33% - 20px);  */
+  width: 200px;
+  margin-bottom: 8px;
+`;
+
+export const Title = styled.h1`
+  position: relative;
+
+  display: inline-block;
+  width: 208px;
+  padding: 0 16px;
+  margin-bottom: 16px;
+  text-align: left;
+
+  background-color: var(--bukarka-orange);
+  color: var(--bukarka-black);
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+`;
+
+export const Subtitle = styled(Title)`
+  background-color: var(--bukarka-yellow);
+  margin-bottom: 8px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    background-color: var(--bukarka-orange);
+  }
 `;
