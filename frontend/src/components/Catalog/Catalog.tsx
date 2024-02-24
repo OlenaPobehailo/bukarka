@@ -1,28 +1,70 @@
-import CategoryList from "components/CategoryList";
-import {
-  education,
-  fiction,
-  foreign,
-  kids,
-  presents,
-  scientific,
-} from "assets/data";
+// import CategoryList from "components/CategoryList";
+import data from "assets/data/data.json";
 import {
   Item,
+  SmallSubTitle,
+  StyledBlock,
   StyledCatalog,
+  StyledItem,
   Subtitle,
+  // Subtitle,
   Title,
   Wrapper,
 } from "./Catalog.styled";
+import { useEffect, useState } from "react";
+interface Category {
+  title: string;
+  links: string[];
+  // [key: string]: any;
+}
+
+interface CatalogData {
+  title: string;
+  categories: Category[];
+}
 
 const Catalog: React.FC = () => {
+  const [categories, setCategories] = useState<CatalogData[]>([]);
+
+  useEffect(() => {
+  //   fetch("https://6570466809586eff6641087a.mockapi.io/categories")
+  //     .then((response) => response.json())
+  //     .then((data) => setCategories(data))
+  //     .catch((error) => console.error("Error fetching categories:", error));
+
+  setCategories(data);
+
+  }, []);
+
+  console.log(categories);
+
   return (
     <Wrapper>
       <StyledCatalog>
         <Item>
           <Title>Всі книги</Title>
         </Item>
-        <Item>
+
+        {categories.map((item, index) => (
+          <div key={index}>
+            <Subtitle>{item.title}</Subtitle>
+            <ul>
+              {item.categories.map(
+                (category: Category, categoryIndex: number) => (
+                  <StyledBlock key={categoryIndex}>
+                    <SmallSubTitle>{category.title}</SmallSubTitle>
+                    <ul>
+                      {category.links.map((link, linkIndex) => (
+                        <StyledItem key={linkIndex}>{link}</StyledItem>
+                      ))}
+                    </ul>
+                  </StyledBlock>
+                )
+              )}
+            </ul>
+          </div>
+        ))}
+        {/* <Item>
           <Subtitle>Дитяча</Subtitle>
           <CategoryList categories={kids} />
         </Item>
@@ -45,7 +87,7 @@ const Catalog: React.FC = () => {
         <Item>
           <Subtitle>Іноземними мовами</Subtitle>
           <CategoryList categories={foreign} />
-        </Item>
+        </Item> */}
       </StyledCatalog>
     </Wrapper>
   );
