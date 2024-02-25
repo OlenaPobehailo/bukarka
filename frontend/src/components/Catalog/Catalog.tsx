@@ -42,7 +42,7 @@ const Catalog: React.FC = () => {
     <Wrapper>
       <StyledCatalog>
         <Item>
-          <Title>Всі книги</Title>
+          <Title>Усі книги</Title>
         </Item>
 
         {categories.map((item, index) => (
