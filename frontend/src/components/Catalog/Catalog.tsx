@@ -6,9 +6,8 @@ import {
   StyledBlock,
   StyledCatalog,
   StyledItem,
-  Subtitle,
-  // Subtitle,
-  Title,
+  SubtitleLink,
+  TitleLink,
   Wrapper,
 } from "./Catalog.styled";
 import { useEffect, useState } from "react";
@@ -27,13 +26,12 @@ const Catalog: React.FC = () => {
   const [categories, setCategories] = useState<CatalogData[]>([]);
 
   useEffect(() => {
-  //   fetch("https://6570466809586eff6641087a.mockapi.io/categories")
-  //     .then((response) => response.json())
-  //     .then((data) => setCategories(data))
-  //     .catch((error) => console.error("Error fetching categories:", error));
+    //   fetch("https://6570466809586eff6641087a.mockapi.io/categories")
+    //     .then((response) => response.json())
+    //     .then((data) => setCategories(data))
+    //     .catch((error) => console.error("Error fetching categories:", error));
 
-  setCategories(data);
-
+    setCategories(data);
   }, []);
 
   console.log(categories);
@@ -42,52 +40,34 @@ const Catalog: React.FC = () => {
     <Wrapper>
       <StyledCatalog>
         <Item>
-          <Title>Усі книги</Title>
+          <TitleLink to="">Усі книги</TitleLink>
         </Item>
 
         {categories.map((item, index) => (
           <div key={index}>
-            <Subtitle>{item.title}</Subtitle>
+            <SubtitleLink to="">{item.title}</SubtitleLink>
             <ul>
               {item.categories.map(
                 (category: Category, categoryIndex: number) => (
-                  <StyledBlock key={categoryIndex}>
-                    <SmallSubTitle>{category.title}</SmallSubTitle>
-                    <ul>
-                      {category.links.map((link, linkIndex) => (
-                        <StyledItem key={linkIndex}>{link}</StyledItem>
-                      ))}
-                    </ul>
-                  </StyledBlock>
+                  <li>
+                    <StyledBlock key={categoryIndex}>
+                      <SmallSubTitle to="">{category.title}</SmallSubTitle>
+                      <ul>
+                        {category.links.map((link, linkIndex) => (
+                          <li>
+                            <StyledItem to="" key={linkIndex}>
+                              {link}
+                            </StyledItem>
+                          </li>
+                        ))}
+                      </ul>
+                    </StyledBlock>
+                  </li>
                 )
               )}
             </ul>
           </div>
         ))}
-        {/* <Item>
-          <Subtitle>Дитяча</Subtitle>
-          <CategoryList categories={kids} />
-        </Item>
-        <Item>
-          <Subtitle>Художня</Subtitle>
-          <CategoryList categories={fiction} />
-        </Item>
-        <Item>
-          <Subtitle>Навчальна</Subtitle>
-          <CategoryList categories={education} />
-        </Item>
-        <Item>
-          <Subtitle>Нехудожня/наукова</Subtitle>
-          <CategoryList categories={scientific} />
-        </Item>
-        <Item>
-          <Subtitle>Подарункові видання</Subtitle>
-          <CategoryList categories={presents} />
-        </Item>
-        <Item>
-          <Subtitle>Іноземними мовами</Subtitle>
-          <CategoryList categories={foreign} />
-        </Item> */}
       </StyledCatalog>
     </Wrapper>
   );
