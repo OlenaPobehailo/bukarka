@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -21,7 +22,7 @@ export const Item = styled.li`
   margin-bottom: 8px;
 `;
 
-export const Title = styled.h1`
+export const TitleLink = styled(Link)`
   position: relative;
 
   display: inline-block;
@@ -38,7 +39,7 @@ export const Title = styled.h1`
   line-height: 1.5;
 `;
 
-export const Subtitle = styled(Title)`
+export const SubtitleLink = styled(TitleLink)`
   background-color: var(--bukarka-yellow);
   margin-bottom: 8px;
 
@@ -51,4 +52,25 @@ export const Subtitle = styled(Title)`
     width: 8px;
     background-color: var(--bukarka-orange);
   }
+`;
+export const StyledBlock = styled.div`
+  margin-left: 16px;
+`;
+
+export const SmallSubTitle = styled(Link)`
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 14px;
+
+  line-height: 1.43;
+  color: var(--bukarka-black);
+`;
+
+export const StyledItem = styled(Link)`
+  font-weight: 400;
+  font-size: 14px;
+  margin-left: 16px;
+
+  line-height: 1.43;
+  color: var(--bukarka-black);
 `;
