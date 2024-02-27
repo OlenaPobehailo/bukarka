@@ -1,12 +1,9 @@
 import {
   EmailIcon,
-  InstagramIcon,
   PhoneIcon,
-  TelegramIcon,
-  ViberIcon,
-  WhatsappIcon,
 } from "assets/icons";
 import { ContactList, ListItem } from "./Contacts.styled";
+import SocialList from "components/SocialList/SocialList";
 
 const Contacts: React.FC = () => {
   return (
@@ -21,10 +18,7 @@ const Contacts: React.FC = () => {
       </ListItem>
 
       <ListItem>
-        <InstagramIcon />
-        <ViberIcon />
-        <WhatsappIcon />
-        <TelegramIcon />
+        <SocialList />
       </ListItem>
     </ContactList>
   );
