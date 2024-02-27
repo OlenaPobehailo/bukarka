@@ -22,5 +22,7 @@ export const StyledCommonWrapper = styled.div`
 
 export const PageWrapper = styled.div`
   margin-top: 104px;
+  padding-bottom: 84px;
+  background-color: var(--bukarka-white);
   /* min-height: calc(75vh); */
 `;

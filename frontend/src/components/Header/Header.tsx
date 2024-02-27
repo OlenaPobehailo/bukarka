@@ -15,6 +15,7 @@ import LanguagesSwitcher from "components/LanguagesSwitcher";
 import Catalog from "components/Catalog";
 import { BurgerIcon } from "assets/icons";
 import Modal from "components/Modal";
+import { StyledCommonWrapper } from "styles/CommonStyled";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -30,25 +31,27 @@ const Header: React.FC = () => {
   return (
     <>
       <StyledHeader>
-        <Wrapper>
-          <Link to="/">
-            <StyledLogoUkr />
-          </Link>
-          <ButtonWrapper>
-            <CatalogButton onClick={toggleModal}>
-              <BurgerIcon />
-              Каталог
-            </CatalogButton>
-          </ButtonWrapper>
-          <StyledForm>
-            <Input type="text" value="" />
-            <FormButton>Знайти</FormButton>
-          </StyledForm>
-          <LanguagesSwitcher />
-        </Wrapper>
+        <StyledCommonWrapper>
+          <Wrapper>
+            <Link to="/">
+              <StyledLogoUkr />
+            </Link>
+            <ButtonWrapper>
+              <CatalogButton onClick={toggleModal}>
+                <BurgerIcon />
+                Каталог
+              </CatalogButton>
+            </ButtonWrapper>
+            <StyledForm>
+              <Input type="text" value="" />
+              <FormButton>Знайти</FormButton>
+            </StyledForm>
+            <LanguagesSwitcher />
+          </Wrapper>
+        </StyledCommonWrapper>
       </StyledHeader>
       {isOpen && (
-        <Modal close={closeModal} showCloseButton={false} >
+        <Modal close={closeModal} showCloseButton={false}>
           <Catalog />
         </Modal>
       )}
