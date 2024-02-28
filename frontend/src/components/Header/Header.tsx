@@ -16,6 +16,7 @@ import Catalog from "components/Catalog";
 import { BurgerIcon } from "assets/icons";
 import Modal from "components/Modal";
 import { StyledCommonWrapper } from "styles/CommonStyled";
+import UserMenu from "components/UserMenu";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -31,7 +32,7 @@ const Header: React.FC = () => {
   return (
     <>
       <StyledHeader>
-        <StyledCommonWrapper>
+        {/* <StyledCommonWrapper> */}
           <Wrapper>
             <Link to="/">
               <StyledLogoUkr />
@@ -47,8 +48,9 @@ const Header: React.FC = () => {
               <FormButton>Знайти</FormButton>
             </StyledForm>
             <LanguagesSwitcher />
+            <UserMenu />
           </Wrapper>
-        </StyledCommonWrapper>
+        {/* </StyledCommonWrapper> */}
       </StyledHeader>
       {isOpen && (
         <Modal close={closeModal} showCloseButton={false}>

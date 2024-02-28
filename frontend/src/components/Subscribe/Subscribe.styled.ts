@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Form = styled.form`
   width: 736px;
   height: 160px;
-  margin: 0 auto 80px;
+  margin: 0 auto;
   padding: 32px 48px;
 
   display: flex;

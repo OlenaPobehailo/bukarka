@@ -3,12 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   gap: 120px;
-
   padding: 32px 136px 104px 32px;
-`;
-
-export const Aside = styled.aside`
-  flex-basis: 25%;
 `;
 
 export const Label = styled.p`
@@ -18,8 +13,11 @@ export const Label = styled.p`
   justify-content: flex-start;
   align-items: center;
 
-  width: 192px;
+  min-width: 192px;
+  width: fit-content;
   height: 32px;
+  margin-top: 32px;
+
   margin-bottom: 72px;
   padding: 4px 16px;
 
@@ -46,8 +44,13 @@ export const Image = styled.img`
 `;
 
 export const AboutStore = styled.div`
-  margin-top: 60px;
-  flex-basis: 65%;
+  margin-top: 64px;
+  padding-left: 121px;
+  padding-right: 136px;
+
+  outline: 1px solid red;
+
+  /* flex-grow: 1; */
 `;
 
 export const Title = styled.h1`

@@ -1,16 +1,20 @@
-import { PageWrapper, StyledCommonWrapper } from "styles/CommonStyled";
+import {
+  Aside,
+  Main,
+  PageWrapper,
+  StyledCommonWrapper,
+} from "styles/CommonStyled";
 import {
   AboutStore,
-  Aside,
   Description,
-  Image,
+  // Image,
   Label,
   Socials,
   SubTitle,
   Title,
-  Wrapper,
+  // Wrapper,
 } from "./AboutPage.styled";
-import { images } from "assets/images";
+// import { images } from "assets/images";
 import SocialList from "components/SocialList/SocialList";
 import Subscribe from "components/Subscribe";
 
@@ -18,11 +22,11 @@ const AboutPage: React.FC = () => {
   return (
     <StyledCommonWrapper>
       <PageWrapper>
-        <Wrapper>
-          <Aside>
-            <Label>Про магазин</Label>
-            <Image src={images.placeholder} width="296" height="419" />
-          </Aside>
+        <Aside>
+          <Label>Про магазин</Label>
+          {/* <Image src={images.placeholder} width="296" height="419" /> */}
+        </Aside>
+        <Main>
           <AboutStore>
             <Title>Букарка</Title>
             <SubTitle>книжкова онлайн книгарня</SubTitle>
@@ -66,9 +70,9 @@ const AboutPage: React.FC = () => {
               <SocialList />
             </Socials>
           </AboutStore>
-        </Wrapper>
-        <Subscribe />
+        </Main>
       </PageWrapper>
+      <Subscribe />
     </StyledCommonWrapper>
   );
 };

@@ -16,9 +16,9 @@ export const StyledHeader = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  max-width: 1440px;
-  padding-left: 72px;
-  padding-right: 72px;
+  max-width: 1296px;
+  padding-left: 32px;
+  padding-right: 32px;
   margin: 0 auto;
 
   display: flex;
@@ -76,7 +76,3 @@ export const FormButton = styled.button`
   font-weight: 600;
   font-size: 16px;
 `;
-
-// export const Wrapper = styled.p`
-//   position: relative;
-// `;
