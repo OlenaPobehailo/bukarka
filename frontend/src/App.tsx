@@ -5,7 +5,7 @@ const HomePage = lazy(() => import("pages/HomePage"));
 const NotFoundPage = lazy(() => import("pages/NotFoundPage"));
 const AboutPage = lazy(() => import("pages/AboutPage/AboutPage"));
 const DeliveryPage = lazy(() => import("pages/DeliveryPage/DeliveryPage"));
-const ContactsPage = lazy(() => import("pages/ContactsPage"));
+const ContactsPage = lazy(() => import("pages/ContactsPage/ContactsPage"));
 const CatalogPage = lazy(() => import("pages/CatalogPage"));
 const BookClubPage = lazy(() => import("pages/BookClubPage"));
 const PrivacyPolicyPage = lazy(() => import("pages/PrivacyPolicyPage"));

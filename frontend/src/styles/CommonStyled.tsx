@@ -6,7 +6,6 @@ export const StyledCommonWrapper = styled.div`
 
   @media screen and (min-width: 1440px) {
     max-width: 1296px;
-    padding-bottom: 80px;
   }
 `;
 
@@ -15,7 +14,6 @@ export const PageWrapper = styled.div`
   display: flex;
 
   margin-top: 108px;
-  padding-bottom: 84px;
   background-color: var(--bukarka-white);
 `;
 
