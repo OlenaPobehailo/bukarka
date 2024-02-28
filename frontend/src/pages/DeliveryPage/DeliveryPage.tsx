@@ -1,4 +1,10 @@
-import { Aside, PageWrapper, StyledCommonWrapper } from "styles/CommonStyled";
+import {
+  Aside,
+  Main,
+  PageWrapper,
+  StyledCommonWrapper,
+} from "styles/CommonStyled";
+
 import {
   AboutDelivery,
   AccentText,
@@ -12,32 +18,53 @@ import {
   SmallSubTitle,
   StyledList,
   SubTitle,
-  Wrapper,
 } from "./DeliveryPage.styled";
+import Subscribe from "components/Subscribe";
 
 const DeliveryPage: React.FC = () => {
+  const handleLinkClick = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const topOffset = element.offsetTop;
+      window.scrollTo({
+        top: topOffset,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <StyledCommonWrapper>
       <PageWrapper>
-        <Wrapper>
-          <Aside>
-            <Label>Доставка і оплата</Label>
-            <Menu>
-              <MenuItem id="delivery">Доставка</MenuItem>
-              <MenuItem id="payment">Оплата</MenuItem>
-              <MenuItem id="return">Повернення</MenuItem>
-            </Menu>
-          </Aside>
+        <Aside>
+          <Label>Доставка і оплата</Label>
+          <Menu>
+            <MenuItem>
+              <button onClick={() => handleLinkClick("delivery")}>
+                Доставка
+              </button>
+            </MenuItem>
+            <MenuItem id="">
+              <button onClick={() => handleLinkClick("payment")}>Оплата</button>
+            </MenuItem>
+            <MenuItem id="">
+              <button onClick={() => handleLinkClick("return")}>
+                Повернення
+              </button>
+            </MenuItem>
+          </Menu>
+        </Aside>
+        <Main>
           <AboutDelivery>
             <HiddenTitle>Умови доставки оплати і повернення</HiddenTitle>
             <AccentText>
               Доставка замовлень на суму 500 грн та вище - безкоштовна!
             </AccentText>
 
-            <SubTitle>Доступні способи доставки</SubTitle>
+            <SubTitle id="delivery">Доступні способи доставки</SubTitle>
+            <HiddenSubTitle>Способи отримання замовлення</HiddenSubTitle>
 
             <StyledList>
-              <HiddenSubTitle>Способи отримання замовлення</HiddenSubTitle>
               <li>
                 <h4>Самовивіз з відділення УкрПошти: </h4>
                 <p>
@@ -71,9 +98,8 @@ const DeliveryPage: React.FC = () => {
               </li>
             </StyledList>
 
-            <SubTitle>Доступні способи оплати</SubTitle>
+            <SubTitle id="payment">Доступні способи оплати</SubTitle>
             <HiddenSubTitle>
-              {" "}
               способи оплати при різних методах доставки
             </HiddenSubTitle>
 
@@ -104,7 +130,8 @@ const DeliveryPage: React.FC = () => {
               </li>
             </StyledList>
 
-            <SubTitle>Повернення товару</SubTitle>
+            <SubTitle id="return">Повернення товару</SubTitle>
+
             <Description>
               Ми розуміємо, що іноді можуть виникати ситуації, коли вам потрібно
               повернути куплений товар. У нашому книжковому онлайн магазині ми
@@ -177,8 +204,9 @@ const DeliveryPage: React.FC = () => {
               допоможемо.
             </Description>
           </AboutDelivery>
-        </Wrapper>
+        </Main>
       </PageWrapper>
+      <Subscribe />
     </StyledCommonWrapper>
   );
 };

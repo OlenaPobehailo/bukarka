@@ -51,4 +51,10 @@ img {
 a{
     text-decoration: none;
 };
+
+
+*:focus-visible  {
+  outline: 2px solid var(--bukarka-black) ;
+  border-radius:2px; 
+}
 `;

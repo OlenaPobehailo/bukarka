@@ -14,8 +14,11 @@ export const Label = styled.p`
   align-items: center;
 
   min-width: 192px;
+  width: fit-content;
   height: 32px;
-  margin-bottom: 72px;
+  margin-top: 32px;
+
+  margin-bottom: 40px;
   padding: 4px 16px;
 
   background-color: var(--bukarka-yellow);
@@ -35,6 +38,7 @@ export const Label = styled.p`
   }
 `;
 
+
 export const Menu = styled.ul`
   display: flex;
   justify-content: flex-start;
@@ -48,11 +52,14 @@ export const MenuItem = styled.li`
   line-height: 1.5;
 
   color: var(--bukarka-black);
+
+  button{
+    background-color: transparent;
+  }
 `;
 
 export const AboutDelivery = styled.div`
   margin-top: 104px;
-  flex-basis: 65%;
 `;
 
 const HiddenStyle = css`
@@ -96,7 +103,7 @@ export const SubTitle = styled.h2`
 `;
 
 export const ShiftRight = styled.div`
-  padding-left: 16px;
+  padding-left: 32px;
 `;
 
 export const SmallSubTitle = styled.h3`
@@ -115,10 +122,13 @@ export const StyledList = styled.ol`
   li {
     margin-bottom: 24px;
     list-style-type: decimal;
-    /* list-style-position: inside; */
+    list-style-position: inside;
+
+   
   }
 
   h4 {
+    display: inline;
     font-weight: 400;
     color: var(--bukarka-blue);
   }

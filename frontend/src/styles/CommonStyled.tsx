@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const StyledCommonWrapper = styled.div`
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   background-color: var(--bukarka-white);
 
   @media screen and (min-width: 1440px) {
@@ -21,17 +20,23 @@ export const PageWrapper = styled.div`
 `;
 
 export const Aside = styled.aside`
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
   width: 274px;
   padding-left: 31px;
-
+  margin-left: auto;
+  overflow-y: auto;
+  top: 108px;
+  bottom: 0;
+  max-height: calc(100vh - 108px);
+  
   outline: 1px solid green;
 `;
 
 export const Main = styled.main`
+  /* width: 100%; */
   margin-left: 274px;
+  overflow-y: auto;
+
   outline: 1px solid red;
 
   /* flex-grow: 1; */

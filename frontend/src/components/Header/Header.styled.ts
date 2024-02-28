@@ -30,6 +30,7 @@ export const Wrapper = styled.div`
 export const StyledLogoUkr = styled(LogoUkr)`
   min-width: 120px;
   min-height: 71px;
+
 `;
 
 export const CatalogButton = styled.button`
@@ -61,9 +62,7 @@ export const Input = styled.input`
   min-height: 40px;
 
   border: none;
-  &:focus {
-    outline: 1px solid var(--bukarka-orange);
-  }
+  
 `;
 
 export const FormButton = styled.button`
