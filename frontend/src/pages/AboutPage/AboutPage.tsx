@@ -12,6 +12,7 @@ import {
   Socials,
   SubTitle,
   Title,
+  Wrapper,
   // Wrapper,
 } from "./AboutPage.styled";
 // import { images } from "assets/images";
@@ -72,7 +73,9 @@ const AboutPage: React.FC = () => {
           </AboutStore>
         </Main>
       </PageWrapper>
-      <Subscribe />
+      <Wrapper>
+        <Subscribe />
+      </Wrapper>
     </StyledCommonWrapper>
   );
 };

@@ -18,6 +18,7 @@ import {
   SmallSubTitle,
   StyledList,
   SubTitle,
+  Wrapper,
 } from "./DeliveryPage.styled";
 import Subscribe from "components/Subscribe";
 
@@ -206,7 +207,9 @@ const DeliveryPage: React.FC = () => {
           </AboutDelivery>
         </Main>
       </PageWrapper>
-      <Subscribe />
+      <Wrapper>
+        <Subscribe />
+      </Wrapper>
     </StyledCommonWrapper>
   );
 };

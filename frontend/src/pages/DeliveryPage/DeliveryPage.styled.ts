@@ -1,9 +1,8 @@
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
-  display: flex;
-  gap: 20px;
-  padding: 32px 136px 104px 32px;
+  width: 100%;
+  padding: 104px 0;
 `;
 
 export const Label = styled.p`
@@ -38,7 +37,6 @@ export const Label = styled.p`
   }
 `;
 
-
 export const Menu = styled.ul`
   display: flex;
   justify-content: flex-start;
@@ -53,7 +51,7 @@ export const MenuItem = styled.li`
 
   color: var(--bukarka-black);
 
-  button{
+  button {
     background-color: transparent;
   }
 `;
@@ -123,8 +121,6 @@ export const StyledList = styled.ol`
     margin-bottom: 24px;
     list-style-type: decimal;
     list-style-position: inside;
-
-   
   }
 
   h4 {

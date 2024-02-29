@@ -62,12 +62,4 @@
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
-
-/* todo  DELETE */
-h1 {
-  text-align: center;
-}
-/* todo  DELETE */

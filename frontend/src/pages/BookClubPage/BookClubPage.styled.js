@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  width: 100%;
-  padding: 104px 0;
-`;
-
-export const Label = styled.p`
+export const Label = styled.h1`
   position: relative;
 
   display: flex;
@@ -42,59 +37,42 @@ export const Image = styled.img`
   height: 419px;
 `;
 
-export const AboutStore = styled.div`
+export const AboutBookClub = styled.div`
   margin-top: 64px;
-  padding-left: 121px;
+  padding-left: 120px;
   padding-right: 136px;
 
   /* flex-grow: 1; */
 `;
 
-export const Title = styled.h1`
-  font-family: "Montserrat-Alternates-Semibold";
+export const Title = styled.h2`
+  margin-bottom: 24px;
   font-weight: 600;
-  font-size: 40px;
-  text-align: left;
-  line-height: 0.8;
+  font-size: 16px;
+  line-height: 1.5;
 
   color: var(--bukarka-blue);
 `;
 
-export const SubTitle = styled.h2`
-  margin-bottom: 32px;
+export const SubTitle = styled.h3`
+  margin-bottom: 16px;
 
-  font-family: "Montserrat-Alternates-Regular";
+  font-weight: 600;
   font-size: 16px;
   line-height: 1.5;
   color: var(--bukarka-black);
 `;
 
-export const Description = styled.div`
+export const Text = styled.p`
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.43;
+
   color: var(--bukarka-black);
-
-  & p {
-    margin-bottom: 24px;
-  }
-
-  & p:last-child {
-    margin-bottom: 32px;
-  }
+  margin-bottom: 24px;
 `;
 
-export const Socials = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 16px;
-
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.43;
-  color: #000;
-
-  & span {
-    vertical-align: middle;
-  }
+export const Wrapper = styled.div`
+  width: 100%;
+  padding: 104px 0;
 `;
