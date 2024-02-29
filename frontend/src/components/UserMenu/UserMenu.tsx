@@ -22,7 +22,6 @@ const UserMenu: React.FC = () => {
         <IconWrapper>
           <AvatarIcon />
         </IconWrapper>
-
         <p>Вхід / Реєстрація</p>
       </UserMenuItem>
     </StyledUserMenu>

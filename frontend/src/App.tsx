@@ -2,12 +2,12 @@ import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 const HomePage = lazy(() => import("pages/HomePage"));
-const NotFoundPage = lazy(() => import("pages/NotFoundPage"));
-const AboutPage = lazy(() => import("pages/AboutPage"));
-const DeliveryPage = lazy(() => import("pages/DeliveryPage"));
-const ContactsPage = lazy(() => import("pages/ContactsPage"));
+const NotFoundPage = lazy(() => import("pages/NotFoundPage/NotFoundPage"));
+const AboutPage = lazy(() => import("pages/AboutPage/AboutPage"));
+const DeliveryPage = lazy(() => import("pages/DeliveryPage/DeliveryPage"));
+const ContactsPage = lazy(() => import("pages/ContactsPage/ContactsPage"));
 const CatalogPage = lazy(() => import("pages/CatalogPage"));
-const BookClubPage = lazy(() => import("pages/BookClubPage"));
+const BookClubPage = lazy(() => import("pages/BookClubPage/BookClubPage"));
 const PrivacyPolicyPage = lazy(() => import("pages/PrivacyPolicyPage"));
 
 function App() {
@@ -22,8 +22,8 @@ function App() {
           <Route path="catalog" element={<CatalogPage />} />
           <Route path="club" element={<BookClubPage />} />
           <Route path="privacy" element={<PrivacyPolicyPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
