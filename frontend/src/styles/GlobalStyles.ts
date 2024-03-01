@@ -20,6 +20,7 @@ body {
   margin: 0;
   padding: 0;
   /* color:   ${({ theme }) => theme.colors.text.primary}; */
+  color: var(--bukarka-black);
   background-color: var(--bukarka-light-grey-1);
   min-width: 320px;
 

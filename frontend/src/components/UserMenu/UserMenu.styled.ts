@@ -8,22 +8,43 @@ export const StyledUserMenu = styled.ul`
 `;
 
 export const UserMenuItem = styled.li`
+  min-height: 48px;
+`;
+
+export const IconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 32px;
+  height: 32px;
+`;
+
+export const Button = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
-  min-height: 48px;
+  color: var(--bukarka-black);
+  background-color: transparent;
 
-  p {
-    font-weight: 400;
-    font-size: 12px;
-    text-align: center;
-    color: var(--bukarka-black);
-  }
+  font-weight: 400;
+  font-size: 12px;
+  text-align: center;
 `;
 
-export const IconWrapper = styled.div`
-  width: 32px;
-  height: 32px;
+export const AuthButton = styled(Button)`
+  width: 112px;
+  height: 48px;
+`;
+
+export const CartButton = styled(Button)`
+  width: 56px;
+  height: 48px;
+`;
+
+export const FavoriteButton = styled(Button)`
+  width: 56px;
+  height: 48px;
 `;

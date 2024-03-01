@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import theme from "styles/theme";
 
 const { colors } = theme;
@@ -14,6 +14,15 @@ const slideIn = keyframes`
   }
 `;
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 export const ModalWrapper = styled.div`
   position: fixed;
 
@@ -26,22 +35,34 @@ export const ModalWrapper = styled.div`
   z-index: 2;
 `;
 
-export const ModalContent = styled.div`
+export const ModalContent = styled.div<{ animation?: string }>`
   position: relative;
-
+  max-height: 90vh;
   overflow-y: auto;
+
+  /* overflow-y: auto; */
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
   background: var(--bukarka-white);
 
-  animation: ${slideIn} 0.3s ease forwards;
+  ${({ animation }) =>
+    animation === "fade" &&
+    css`
+      animation: ${fadeIn} 0.3s ease forwards;
+    `}
+
+  ${({ animation }) =>
+    animation === "slide" &&
+    css`
+      animation: ${slideIn} 0.3s ease forwards;
+    `}
 `;
 
 export const CloseButton = styled.button`
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 15px;
+  right: 15px;
   background-color: transparent;
   border: none;
-  font-size: 16px;
+  font-size: 18px;
   cursor: pointer;
 `;
