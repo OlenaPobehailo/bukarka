@@ -11,11 +11,16 @@ const bookSchema = new Schema({
   rating: Number,
   category: String,
   subcategory: String,
-  genre: String,
+  age: String,
+  genre: Array,
   format: String,
   cover: String,
   pages: Number,
   year: String,
+  new: Boolean,
+  promotions: Boolean,
+  bestsellers: Boolean,
+  description: String,
 });
 
 bookSchema.post("save", handleMongooseError);
