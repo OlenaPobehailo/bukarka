@@ -7,11 +7,11 @@ const Layout: React.FC = () => {
   return (
     <>
       <Header />
-      <div>
+      {/* <div> */}
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
         </Suspense>
-      </div>
+      {/* </div> */}
       <Footer />
     </>
   );

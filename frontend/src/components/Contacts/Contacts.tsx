@@ -1,30 +1,25 @@
 import {
-  EmailIcon,
-  InstagramIcon,
-  PhoneIcon,
-  TelegramIcon,
-  ViberIcon,
-  WhatsappIcon,
-} from "assets/icons";
-import { ContactList, ListItem } from "./Contacts.styled";
+  ContactList,
+  ListItem,
+  StyledEmailIcon,
+  StyledPhoneIcon,
+} from "./Contacts.styled";
+import SocialList from "components/SocialList/SocialList";
 
 const Contacts: React.FC = () => {
   return (
     <ContactList>
       <ListItem>
-        <PhoneIcon />
-        <a href="tel:+380961234567">+38 096 123 45 67</a>
+        <StyledPhoneIcon />
+        <span>+38 096 123 45 67</span>
       </ListItem>
       <ListItem>
-        <EmailIcon />
-        <a href="mailto:">bukarka.info@gmail.com</a>
+        <StyledEmailIcon />
+        <span>bukarka.info@gmail.com</span>
       </ListItem>
 
       <ListItem>
-        <InstagramIcon />
-        <ViberIcon />
-        <WhatsappIcon />
-        <TelegramIcon />
+        <SocialList />
       </ListItem>
     </ContactList>
   );

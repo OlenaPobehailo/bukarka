@@ -53,6 +53,7 @@ export const SubtitleLink = styled(TitleLink)`
     background-color: var(--bukarka-orange);
   }
 `;
+
 export const StyledBlock = styled.div`
   margin-left: 16px;
 `;
