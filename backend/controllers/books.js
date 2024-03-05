@@ -4,8 +4,6 @@ const { ctrlWrapper } = require("../decorators");
 
 const getAll = async (req, res) => {
   const total = await Book.countDocuments();
-  console.log(total);
-
   const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
 
@@ -20,8 +18,6 @@ const getAll = async (req, res) => {
 
 const getBestsellers = async (req, res) => {
   const total = await Book.countDocuments({ bestsellers: true });
-  console.log(total);
-
   const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
 
@@ -36,10 +32,9 @@ const getBestsellers = async (req, res) => {
 
 const getNewBooks = async (req, res) => {
   const total = await Book.countDocuments({ new: true });
-  console.log(total);
-
   const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
+
   const data = await Book.find({ new: true }).skip(skip).limit(limit);
   res.json({
     total,
@@ -51,10 +46,9 @@ const getNewBooks = async (req, res) => {
 
 const getPromotions = async (req, res) => {
   const total = await Book.countDocuments({ promotions: true });
-  console.log(total);
-
   const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
+  
   const data = await Book.find({ promotions: true }).skip(skip).limit(limit);
   res.json({
     total,
