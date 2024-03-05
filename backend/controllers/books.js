@@ -3,37 +3,65 @@ const { Book } = require("../models/book");
 const { ctrlWrapper } = require("../decorators");
 
 const getAll = async (req, res) => {
+  const total = await Book.countDocuments();
+  console.log(total);
+
   const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
 
-  const result = await Book.find().skip(skip).limit(limit);
-  res.json({ data: result });
+  const data = await Book.find().skip(skip).limit(limit);
+  res.json({
+    total,
+    page,
+    limit,
+    data,
+  });
 };
 
 const getBestsellers = async (req, res) => {
+  const total = await Book.countDocuments({ bestsellers: true });
+  console.log(total);
+
   const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
 
-  const bestsellers = await Book.find({ bestsellers: true })
-    .skip(skip)
-    .limit(limit);
-  res.json({ data: bestsellers });
+  const data = await Book.find({ bestsellers: true }).skip(skip).limit(limit);
+  res.json({
+    total,
+    page,
+    limit,
+    data,
+  });
 };
 
 const getNewBooks = async (req, res) => {
+  const total = await Book.countDocuments({ new: true });
+  console.log(total);
+
   const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
-  const newBooks = await Book.find({ new: true }).skip(skip).limit(limit);
-  res.json({ data: newBooks });
+  const data = await Book.find({ new: true }).skip(skip).limit(limit);
+  res.json({
+    total,
+    page,
+    limit,
+    data,
+  });
 };
 
 const getPromotions = async (req, res) => {
+  const total = await Book.countDocuments({ promotions: true });
+  console.log(total);
+
   const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
-  const promotions = await Book.find({ promotions: true })
-    .skip(skip)
-    .limit(limit);
-  res.json({ data: promotions });
+  const data = await Book.find({ promotions: true }).skip(skip).limit(limit);
+  res.json({
+    total,
+    page,
+    limit,
+    data,
+  });
 };
 
 module.exports = {
