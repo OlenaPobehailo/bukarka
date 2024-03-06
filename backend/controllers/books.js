@@ -48,7 +48,7 @@ const getPromotions = async (req, res) => {
   const total = await Book.countDocuments({ promotions: true });
   const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
-  
+
   const data = await Book.find({ promotions: true }).skip(skip).limit(limit);
   res.json({
     total,
@@ -58,9 +58,20 @@ const getPromotions = async (req, res) => {
   });
 };
 
+const getBookById = async (req, res) => {
+  const { id } = req.params;
+  const book = await Book.findById(id);
+
+  if (!book) {
+    throw HttpError(404, `Book with id=${id} not found`);
+  }
+  res.json(book);
+};
+
 module.exports = {
   getAll: ctrlWrapper(getAll),
   getBestsellers: ctrlWrapper(getBestsellers),
   getNewBooks: ctrlWrapper(getNewBooks),
   getPromotions: ctrlWrapper(getPromotions),
+  getBookById: ctrlWrapper(getBookById),
 };
