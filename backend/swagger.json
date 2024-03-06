@@ -28,6 +28,56 @@
     }
   ],
   "paths": {
+    "/auth/register": {
+      "post": {
+        "tags":["Auth"],
+        "summary": "User registration",
+        "parameters":[],
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          } 
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationErrorResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationBadRequestResponse"
+                }
+              }
+            }
+          } 
+        }
+      }
+    },
     "/books": {
       "get": {
         "tags": ["Books"],
@@ -232,6 +282,104 @@
   },
   "components": {
     "schemas": {
+      "RegistrationRequest": {
+        "type": "object",
+        "required": ["name", "surname", "phone", "email", "password"],
+        "properties": {
+          "name": {
+            "type": "string",
+						"description": "User's name",
+            "pattern": "/^[a-zA-Zа-яА-ЯЇїІіЄєҐґ]*$/",
+						"example": "Марина"
+          },
+          "surname": {
+            "type": "string",
+						"description": "User's surname",
+            "pattern": "/^[a-zA-Zа-яА-ЯЇїІіЄєҐґ]*$/",
+						"example": "Озкара"
+          },
+          "phone": {
+            "type": "string",
+						"description": "User's phone",
+            "minLength": "9",
+            "example": "961556362"
+          },
+          "email": {
+            "type": "string",
+						"description": "User's email",
+						"format": "email",
+						"pattern": "/^w+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$/",
+            "example": "ozkaramaryna@gmail.com"
+          },
+          "password": {
+            "type": "string",
+						"description": "User's password",
+						"minLength": "8",
+						"maxLength": "16",
+            "pattern": "/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%*()_]).{8,}$/",
+						"example": "Qwerty123$"
+          }
+        }
+      },
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+						"required": true,
+						"description": "User's authentitication token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTc5NmU2ZmNkNDllZjYzMTUyNWVkMSIsImlhdCI6MTcwOTY3NjI2MiwiZXhwIjoxNzA5NzYyNjYyfQ.hcCWfCluBf92kCsNif8_hlMGFHPIBWom_QOsahAosq4"
+          },
+          "name": {
+            "type": "string",
+						"description": "User's name",
+						"example": "Марина"
+          },
+          "surname":{
+            "type": "string",
+						"description": "User's surname",
+						"example": "Озкара"
+          },
+          "email":{
+            "type": "string",
+						"description": "User's email",
+						"example": "ozkaramaryna@gmail.com"
+          },
+          "phone":{
+            "type": "string",
+						"description": "User's phone",
+            "example": "961556362"
+          },
+          "role": {
+            "type": "string",
+            "description": "User permition",
+            "example": "customer"
+          },
+          "subscription": {
+            "type": "string",
+            "description": "User status",
+            "example": "beginner"
+          }
+        }
+      },
+      "RegistrationErrorResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Email has already been registered"
+					}
+				}
+      },
+      "RegistrationBadRequestResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Bad request (invalid request body)"
+					}
+				}
+      },
       "BookResponse": {
         "type": "object",
         "properties": {
