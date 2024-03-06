@@ -2,11 +2,35 @@ const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 const { handleMongooseError, patterns } = require("../helpers");
 
+const registerJoiSchema = Joi.object({
+  name: Joi.string().pattern(patterns.name).required(),
+  surname: Joi.string().pattern(patterns.name).required(),
+  phone: Joi.string().min(9).max(9).required(),
+  email: Joi.string().pattern(patterns.email).required(),
+  password: Joi.string().min(8).max(16).pattern(patterns.password).required(),
+});
+
 const userSchema = new Schema(
   {
     name: {
       type: String,
       required: [true, "Set name for user"],
+      match: patterns.name,
+      minlength: [2, "Name must be at list 2 characters"],
+      maxLength: [32, "Name must not be more then 32 characters"],
+    },
+    surname: {
+      type: String,
+      match: patterns.name,
+      required: [true, "Set surname for user"],
+      minlength: [2, "Surname must be at list 2 characters"],
+      maxLength: [32, "Surname must not be more then 32 characters"],
+    },
+    phone: {
+      type: String,
+      default: "+380",
+      minlength: [9, "Enter valid number"],
+      maxLength: [9, "Enter valid number"],
     },
     email: {
       type: String,
@@ -17,10 +41,9 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: [true, "Please add a password"],
-      minlength: [6, "Password must be up to 6 characters"],
-      maxLength: [20, "Password must not be more then 20 characters"],
-      required: [true, "Set password for user"],
+      required: [true, "Password is required"],
+      match: patterns.password,
+      minlength: [8, "Password must be at list 8 characters"],
     },
     role: {
       type: String,
@@ -28,18 +51,10 @@ const userSchema = new Schema(
       default: "customer",
       enum: ["customer", "admin"],
     },
-    avatarURL: {
-      type: String,
-      required: true,
-    },
     subscription: {
       type: String,
-      enum: ["beginner", "advanced", "pro"],
+      enum: ["beginner", "club"],
       default: "beginner",
-    },
-    phone: {
-      type: String,
-      default: "+380",
     },
     address: {
       type: Object,
@@ -50,5 +65,8 @@ const userSchema = new Schema(
 
 userSchema.post("save", handleMongooseError);
 
+const schemas = {
+  registerJoiSchema,
+};
 const User = model("user", userSchema);
-module.exports = { User };
+module.exports = { User, schemas };
