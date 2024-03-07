@@ -1,5 +1,5 @@
 // import CategoryList from "components/CategoryList";
-import data from "assets/data/data.json";
+import { instance } from "utils/fetchInstance";
 import {
   Item,
   SmallSubTitle,
@@ -19,19 +19,23 @@ interface Category {
 
 interface CatalogData {
   title: string;
-  categories: Category[];
+  subcategories: Category[];
 }
 
 const Catalog: React.FC = () => {
   const [categories, setCategories] = useState<CatalogData[]>([]);
 
   useEffect(() => {
-    //   fetch("https://6570466809586eff6641087a.mockapi.io/categories")
-    //     .then((response) => response.json())
-    //     .then((data) => setCategories(data))
-    //     .catch((error) => console.error("Error fetching categories:", error));
+    const fetchData = async () => {
+      try {
+        const response = await instance.get("/api/categories");
+        setCategories(response.data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
 
-    setCategories(data);
+    fetchData();
   }, []);
 
   console.log(categories);
@@ -47,13 +51,13 @@ const Catalog: React.FC = () => {
           <div key={index}>
             <SubtitleLink to="">{item.title}</SubtitleLink>
             <ul>
-              {item.categories.map(
-                (category: Category, categoryIndex: number) => (
+              {item.subcategories.map(
+                (subcategory: Category, categoryIndex: number) => (
                   <li>
                     <StyledBlock key={categoryIndex}>
-                      <SmallSubTitle to="">{category.title}</SmallSubTitle>
+                      <SmallSubTitle to="">{subcategory.title}</SmallSubTitle>
                       <ul>
-                        {category.links.map((link, linkIndex) => (
+                        {subcategory.links.map((link, linkIndex) => (
                           <li>
                             <StyledItem to="" key={linkIndex}>
                               {link}
