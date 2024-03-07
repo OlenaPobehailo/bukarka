@@ -118,7 +118,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BooksErrorResponse"
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
                 }
               }
             }
@@ -169,7 +169,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BooksErrorResponse"
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
                 }
               }
             }
@@ -220,7 +220,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BooksErrorResponse"
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
                 }
               }
             }
@@ -271,7 +271,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BooksErrorResponse"
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
                 }
               }
             }
@@ -310,7 +310,37 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BooksErrorResponse"
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get all categories",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryListResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Book not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
                 }
               }
             }
@@ -318,6 +348,7 @@
         }
       }
     }
+    
   },
   "components": {
     "schemas": {
@@ -537,7 +568,50 @@
           }
         }
       },
-      "BooksErrorResponse": {
+      "CategoryResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Category ID",
+            "example": "65e5c6238360afb1e50ffe59"
+          },
+          "title": {
+            "type": "string",
+            "description": "Category title",
+            "example": "Fiction"
+          },
+          "order": {
+            "type": "number",
+            "description": "Category order",
+            "example": 1
+          },
+          "subcategories": {
+            "type": "array",
+            "description": "Subcategories",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "subcategory1",
+              "subcategory1"
+            ]
+          }
+        }
+      },
+      "CategoryListResponse": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "description": "List of categories",
+            "items": {
+              "$ref": "#/components/schemas/CategoryResponse"
+            }
+          }
+        }
+      },
+      "errorNotFoundResponse": {
         "type": "object",
         "properties": {
           "message": {
