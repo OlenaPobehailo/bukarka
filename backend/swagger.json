@@ -1,185 +1,625 @@
 {
-    "openapi": "3.0.1",
-	"info": {
-		"version": "1.1.0",
-		"title": "Bukarka backend docs",
-		"description": "This is Bukarka - book's online shop REST API documentation",
-		"license": {
-			"name": "MIT",
-			"url": "https://opensource.org/licenses/MIT"
-		}
-	},
-	"consumes": ["application/json", "multipart/form-data"],
-	"produces": ["application/json"],
-	"servers": [
-		{ "url": "http://localhost:4000/api" },
-		{ "url": "https://bukarka.onrender.com/api" }
-	],
-    "tags": [
-        {
-            "name": "Auth",
-            "description": "Autorization endpoints"
-        },
-        {
-            "name": "Books",
-            "description": "Books endpoints"
-        }
-    ],
-    "paths": {
-        "/books": {
-            "get":{
-                "tags": ["Books"],
-                "summary": "Returns all books",
-                "parameters": [],
-                "security": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/BooksResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Books not found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/BooksErrorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.1.0",
+    "title": "Bukarka backend docs",
+    "description": "This is Bukarka - book's online shop REST API documentation",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/api"
     },
-    "components": {
-        "schemas": {
-            "BooksResponse": {
-				"type": "object",
-				"properties": {
-					"total": {
-						"type": "number",
-						"example": 40927
-					},
-					"page": {
-						"type": "number",
-						"example": 1
-					},
-					"limit": {
-						"type": "number",
-						"example": 20
-					},
-					"data": {
-						"type": "object",
-						"properties": {
-							"_id": {
-								"type": "string",
-								"description": "Book ID",
-								"example": "65e5c6238360afb1e50ffe59"
-							},
-							"author": {
-								"type": "string",
-								"description": "Book's author",
-								"example": "Марія Коваль"
-							},
-							"title": {
-								"type": "string",
-								"description": "Book's title",
-								"example": "Казки для дітей"
-							},
-							"language": {
-								"type": "string",
-								"description": "Language",
-								"example": "українська"
-							},
-							"publisher": {
-								"type": "string",
-								"description": "Publisher",
-								"example": "Казкове видавництво"
-							},
-							"price": {
-								"type": "number",
-								"description": "Book's price",
-								"example": 120
-							},
-							"rating": {
-								"type": "number",
-								"description": "Rating",
-								"example": 4.5
-							},
-							"category": {
-								"type": "string",
-								"description": "Book's category",
-								"example": "Дитяча"
-							},
-							"subcategory": {
-								"type": "string",
-								"description": "Book's subcategory",
-								"example": "Казки"
-							},
-							"age": {
-								"type": "string",
-								"description": "Recommended age",
-								"example": "4 - 6"
-							},
-							"format": {
-								"type": "string",
-								"description": "Format",
-								"example": "205 х 260 мм"
-							},
-							"cover": {
-								"type": "string",
-								"description": "Book's cover",
-								"example": "Тверда"
-							},
-							"pages": {
-								"type": "number",
-								"description": "Number of book's pages",
-								"example": 150
-							},
-							"year": {
-								"type": "string",
-								"description": "Year of publication",
-								"example": "2020"
-							},
-							"new": {
-								"type": "boolean",
-								"description": "State",
-								"example": false
-							},
-							"promotions": {
-								"type": "boolean",
-								"description": "Promotions",
-								"example": false
-							},
-							"bestsellers": {
-								"type": "boolean",
-								"description": "Bestsellers",
-								"example": true
-							},
-							"description": {
-								"type": "string",
-								"description": "Book's description",
-								"example": "У захопливій збірці 'Казки для дітей' від відомої української письменниці Марії Коваль вас чекає безліч чарівних пригод та захоплюючих історій. Ці казки сповнені магії, навчальних моментів та добрих уроків, які залишать незабутнє враження у кожного маленького читача. Давайте разом відправимося у світ фантастичних пригод та відкриємо для себе нові історії!"
-							}
-						}
-					}
-				}
-			},
-			"BooksErrorResponse": {
-				"type": "object",
+    {
+      "url": "https://bukarka.onrender.com/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Autorization endpoints"
+    },
+    {
+      "name": "Books",
+      "description": "Books endpoints"
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags":["Auth"],
+        "summary": "User registration",
+        "parameters":[],
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          } 
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationErrorResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationBadRequestResponse"
+                }
+              }
+            }
+          } 
+        }
+      }
+    },
+    "/books": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "Returns all books",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "The page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "The number of items per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookListResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Books not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/bestsellers": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "Returns bestseller books",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "The page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "The number of items per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookListResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Books not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/new": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "Returns new books",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "The page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "The number of items per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookListResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Books not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/promotions": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "Returns books on promotions",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "The page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "The number of items per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookListResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Books not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{id}": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "Returns a book by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Book ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Book not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get all categories",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryListResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Book not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+  },
+  "components": {
+    "schemas": {
+      "RegistrationRequest": {
+        "type": "object",
+        "required": ["name", "surname", "phone", "email", "password"],
+        "properties": {
+          "name": {
+            "type": "string",
+						"description": "User's name",
+            "pattern": "/^[a-zA-Zа-яА-ЯЇїІіЄєҐґ]*$/",
+						"example": "Марина"
+          },
+          "surname": {
+            "type": "string",
+						"description": "User's surname",
+            "pattern": "/^[a-zA-Zа-яА-ЯЇїІіЄєҐґ]*$/",
+						"example": "Озкара"
+          },
+          "phone": {
+            "type": "string",
+						"description": "User's phone",
+            "minLength": "9",
+            "example": "961556362"
+          },
+          "email": {
+            "type": "string",
+						"description": "User's email",
+						"format": "email",
+						"pattern": "/^w+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$/",
+            "example": "ozkaramaryna@gmail.com"
+          },
+          "password": {
+            "type": "string",
+						"description": "User's password",
+						"minLength": "8",
+						"maxLength": "16",
+            "pattern": "/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%*()_]).{8,}$/",
+						"example": "Qwerty123$"
+          }
+        }
+      },
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+						"required": true,
+						"description": "User's authentitication token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTc5NmU2ZmNkNDllZjYzMTUyNWVkMSIsImlhdCI6MTcwOTY3NjI2MiwiZXhwIjoxNzA5NzYyNjYyfQ.hcCWfCluBf92kCsNif8_hlMGFHPIBWom_QOsahAosq4"
+          },
+          "name": {
+            "type": "string",
+						"description": "User's name",
+						"example": "Марина"
+          },
+          "surname":{
+            "type": "string",
+						"description": "User's surname",
+						"example": "Озкара"
+          },
+          "email":{
+            "type": "string",
+						"description": "User's email",
+						"example": "ozkaramaryna@gmail.com"
+          },
+          "phone":{
+            "type": "string",
+						"description": "User's phone",
+            "example": "961556362"
+          },
+          "role": {
+            "type": "string",
+            "description": "User permition",
+            "example": "customer"
+          },
+          "subscription": {
+            "type": "string",
+            "description": "User status",
+            "example": "beginner"
+          }
+        }
+      },
+      "RegistrationErrorResponse": {
+        "type": "object",
 				"properties": {
 					"message": {
 						"type": "string",
-						"example": "Books not found"
+						"example": "Email has already been registered"
 					}
 				}
-			}
+      },
+      "RegistrationBadRequestResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Bad request (invalid request body)"
+					}
+				}
+      },
+      "BookResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Book ID",
+            "example": "65e5c6238360afb1e50ffe59"
+          },
+          "author": {
+            "type": "string",
+            "description": "Book's author",
+            "example": "Марія Коваль"
+          },
+          "title": {
+            "type": "string",
+            "description": "Book's title",
+            "example": "Казки для дітей"
+          },
+          "language": {
+            "type": "string",
+            "description": "Language",
+            "example": "українська"
+          },
+          "publisher": {
+            "type": "string",
+            "description": "Publisher",
+            "example": "Казкове видавництво"
+          },
+          "price": {
+            "type": "number",
+            "description": "Book's price",
+            "example": 120
+          },
+          "rating": {
+            "type": "number",
+            "description": "Rating",
+            "example": 4.5
+          },
+          "category": {
+            "type": "string",
+            "description": "Book's category",
+            "example": "Дитяча"
+          },
+          "subcategory": {
+            "type": "string",
+            "description": "Book's subcategory",
+            "example": "Казки"
+          },
+          "age": {
+            "type": "string",
+            "description": "Recommended age",
+            "example": "4 - 6"
+          },
+          "format": {
+            "type": "string",
+            "description": "Format",
+            "example": "205 х 260 мм"
+          },
+          "cover": {
+            "type": "string",
+            "description": "Book's cover",
+            "example": "Тверда"
+          },
+          "pages": {
+            "type": "number",
+            "description": "Number of book's pages",
+            "example": 150
+          },
+          "year": {
+            "type": "string",
+            "description": "Year of publication",
+            "example": "2020"
+          },
+          "new": {
+            "type": "boolean",
+            "description": "State",
+            "example": true
+          },
+          "promotions": {
+            "type": "boolean",
+            "description": "Promotions",
+            "example": true
+          },
+          "bestsellers": {
+            "type": "boolean",
+            "description": "Bestsellers",
+            "example": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Book's description",
+            "example": "У захопливій збірці 'Казки для дітей' від відомої української письменниці Марії Коваль вас чекає безліч чарівних пригод та захоплюючих історій. Ці казки сповнені магії, навчальних моментів та добрих уроків, які залишать незабутнє враження у кожного маленького читача. Давайте разом відправимося у світ фантастичних пригод та відкриємо для себе нові історії!"
+          }
         }
+      },
+      "BookListResponse": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "number",
+            "example": 40927
+          },
+          "page": {
+            "type": "number",
+            "example": 1
+          },
+          "limit": {
+            "type": "number",
+            "example": 12
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BookResponse"
+            }
+          }
+        }
+      },
+      "CategoryResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Category ID",
+            "example": "65e5c6238360afb1e50ffe59"
+          },
+          "title": {
+            "type": "string",
+            "description": "Category title",
+            "example": "Fiction"
+          },
+          "order": {
+            "type": "number",
+            "description": "Category order",
+            "example": 1
+          },
+          "subcategories": {
+            "type": "array",
+            "description": "Subcategories",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "subcategory1",
+              "subcategory1"
+            ]
+          }
+        }
+      },
+      "CategoryListResponse": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "description": "List of categories",
+            "items": {
+              "$ref": "#/components/schemas/CategoryResponse"
+            }
+          }
+        }
+      },
+      "errorNotFoundResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Books not found"
+          }
+        }
+      }
     }
+  }
 }
