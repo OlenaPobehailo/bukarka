@@ -9,6 +9,7 @@ const ContactsPage = lazy(() => import("pages/ContactsPage/ContactsPage"));
 const CatalogPage = lazy(() => import("pages/CatalogPage"));
 const BookClubPage = lazy(() => import("pages/BookClubPage/BookClubPage"));
 const PrivacyPolicyPage = lazy(() => import("pages/PrivacyPolicyPage"));
+const BookItem = lazy(() => import("./components/BookItem/BookItem"));
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
+          <Route path="books/:id" element={<BookItem />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="delivery" element={<DeliveryPage />} />
           <Route path="contacts" element={<ContactsPage />} />

@@ -6,6 +6,7 @@ export const StyledCommonWrapper = styled.div`
   padding-right: 20px; */
   margin-left: auto;
   margin-right: auto;
+  max-width: 1296px;
 
   /* @media screen and (min-width: 768px) {
     max-width: 768px;
@@ -15,14 +16,16 @@ export const StyledCommonWrapper = styled.div`
 
   @media screen and (min-width: 1440px) {
     max-width: 1296px;
-    padding-left: 72px;
-    padding-right: 72px;
+  //  padding-left: 72px;
+  //  padding-right: 72px;
   }
 `;
 
 export const PageWrapper = styled.div`
   position: relative;
   display: flex;
+  flex-direction: column;
+  text-align: center;
 
   margin-top: 108px;
   background-color: var(--bukarka-white);
@@ -45,6 +48,6 @@ export const Main = styled.main`
   overflow-y: auto;
   /* flex-grow: 1; */
   margin-top: 104px;
-  background-color: white;
+  //background-color: white;
   /* min-height: calc(75vh); */
 `;
