@@ -35,6 +35,7 @@ const Register: React.FC<Props> = ({ title, prompt }) => {
           onSubmit={handleSubmit}
           title={title}
           prompt={prompt}
+          showPasswordText={true}
         />
         <Prompt onClick={showLoginModal}>{prompt}</Prompt>
       </Wrapper>

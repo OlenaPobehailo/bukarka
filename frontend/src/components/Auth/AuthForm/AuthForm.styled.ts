@@ -20,9 +20,9 @@ export const Input = styled.input`
 
   border: 1px solid var(--bukarka-light-grey-1);
 
-  &:last-child {
+  /* &:last-child {
     margin-bottom: 24px;
-  }
+  } */
 
   &:hover {
     box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.25);

@@ -35,6 +35,7 @@ const Login: React.FC<Props> = ({ title, prompt }) => {
           onSubmit={handleSubmit}
           title={title}
           prompt={prompt}
+          showForgotPasswordLink ={true}
         />
         <Prompt onClick={showLoginModal}>{prompt}</Prompt>
       </Wrapper>
