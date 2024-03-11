@@ -1,15 +1,19 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
+const bcrypt = require("bcrypt");
 const { handleMongooseError, patterns } = require("../helpers");
 
 const registerJoiSchema = Joi.object({
   name: Joi.string().pattern(patterns.name).required(),
   surname: Joi.string().pattern(patterns.name).required(),
-  phone: Joi.string().min(9).max(9).required(),
+  phone: Joi.string().pattern(patterns.phone).min(9).max(9).required(),
   email: Joi.string().pattern(patterns.email).required(),
   password: Joi.string().min(8).max(16).pattern(patterns.password).required(),
 });
-
+const loginJoiSchema = Joi.object({
+  email: Joi.string().pattern(patterns.email).required(),
+  password: Joi.string().min(8).max(16).pattern(patterns.password).required(),
+});
 const userSchema = new Schema(
   {
     name: {
@@ -29,8 +33,9 @@ const userSchema = new Schema(
     phone: {
       type: String,
       default: "+380",
-      minlength: [9, "Enter valid number"],
-      maxLength: [9, "Enter valid number"],
+      match: patterns.phone,
+      minlength: [9, "Enter valid phone number"],
+      maxLength: [9, "Enter valid phone number"],
     },
     email: {
       type: String,
@@ -56,17 +61,27 @@ const userSchema = new Schema(
       enum: ["beginner", "club"],
       default: "beginner",
     },
-    address: {
-      type: Object,
+    token: {
+      type: String,
+      default: "",
     },
   },
   { versionKey: false, timestamps: true }
 );
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
+  const hashPassword = await bcrypt.hash(this.password, 10);
+  this.password = hashPassword;
+});
 
 userSchema.post("save", handleMongooseError);
 
 const schemas = {
   registerJoiSchema,
+  loginJoiSchema,
 };
+
 const User = model("user", userSchema);
 module.exports = { User, schemas };
