@@ -26,9 +26,10 @@ body {
 
 }
 
+/* 
 p:last-child {
   margin-bottom: 0;
-}
+} */
 
 ul, ol, li {
   margin: 0;

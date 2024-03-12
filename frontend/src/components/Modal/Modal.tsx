@@ -5,9 +5,10 @@ import { CrossIcon } from "assets/icons";
 
 interface ModalProps {
   children: ReactNode;
-  close: () => void;
+  close?: () => void;
   showCloseButton?: boolean;
   animation?: string;
+  modalId?: string;
 }
 
 const rootModal = document.querySelector("#modal");
@@ -19,7 +20,7 @@ if (!modalContainer) {
 
 const Modal: React.FC<ModalProps> = ({
   children,
-  close,
+  close = () => {},
   showCloseButton,
   animation = "fade",
 }) => {

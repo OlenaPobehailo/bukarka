@@ -36,6 +36,7 @@ const Register: React.FC<Props> = ({ title, prompt }) => {
           title={title}
           prompt={prompt}
           showPasswordText={true}
+          checkbox={true}
         />
         <Prompt onClick={showLoginModal}>{prompt}</Prompt>
       </Wrapper>

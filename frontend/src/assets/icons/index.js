@@ -12,3 +12,4 @@ export { ReactComponent as PhoneIcon } from "./phone-icon.svg";
 
 export { ReactComponent as CrossIcon } from "./cross-icon.svg";
 export { ReactComponent as NotFoundIcon } from "./404.svg";
+export { ReactComponent as EyeClose } from "./eye-close.svg";
