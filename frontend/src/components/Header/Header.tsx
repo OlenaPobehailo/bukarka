@@ -19,41 +19,41 @@ import { StyledCommonWrapper } from "styles/CommonStyled";
 import UserMenu from "components/UserMenu";
 
 const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const toggleModal = () => {
-    setIsOpen(!isOpen);
+    setIsModalOpen(!isModalOpen);
   };
 
   const closeModal = () => {
-    setIsOpen(false);
+    setIsModalOpen(false);
   };
 
   return (
     <>
       <StyledHeader>
         {/* <StyledCommonWrapper> */}
-          <Wrapper>
-            <Link to="/">
-              <StyledLogoUkr />
-            </Link>
-            <ButtonWrapper>
-              <CatalogButton onClick={toggleModal}>
-                <BurgerIcon />
-                Каталог
-              </CatalogButton>
-            </ButtonWrapper>
-            <StyledForm>
-              <Input type="text" value="" />
-              <FormButton>Знайти</FormButton>
-            </StyledForm>
-            <LanguagesSwitcher />
-            <UserMenu />
-          </Wrapper>
+        <Wrapper>
+          <Link to="/">
+            <StyledLogoUkr />
+          </Link>
+          <ButtonWrapper>
+            <CatalogButton onClick={toggleModal}>
+              <BurgerIcon />
+              Каталог
+            </CatalogButton>
+          </ButtonWrapper>
+          <StyledForm>
+            <Input type="text" value="" />
+            <FormButton>Знайти</FormButton>
+          </StyledForm>
+          <LanguagesSwitcher />
+          <UserMenu />
+        </Wrapper>
         {/* </StyledCommonWrapper> */}
       </StyledHeader>
-      {isOpen && (
-        <Modal close={closeModal} showCloseButton={false}>
+      {isModalOpen && (
+        <Modal close={closeModal} showCloseButton={false} animation="slide">
           <Catalog />
         </Modal>
       )}

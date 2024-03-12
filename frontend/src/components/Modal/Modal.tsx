@@ -5,9 +5,10 @@ import { CrossIcon } from "assets/icons";
 
 interface ModalProps {
   children: ReactNode;
-  close: () => void;
+  close?: () => void;
   showCloseButton?: boolean;
-  
+  animation?: string;
+  modalId?: string;
 }
 
 const rootModal = document.querySelector("#modal");
@@ -17,7 +18,12 @@ if (!modalContainer) {
   throw new Error("Modal container not found");
 }
 
-const Modal: React.FC<ModalProps> = ({ children, close, showCloseButton }) => {
+const Modal: React.FC<ModalProps> = ({
+  children,
+  close = () => {},
+  showCloseButton,
+  animation = "fade",
+}) => {
   const handleKeyDown: any = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -46,7 +52,7 @@ const Modal: React.FC<ModalProps> = ({ children, close, showCloseButton }) => {
 
   return ReactDOM.createPortal(
     <ModalWrapper onClick={handleClickOutside}>
-      <ModalContent>
+      <ModalContent animation={animation}>
         {showCloseButton && (
           <CloseButton onClick={close}>
             <CrossIcon />
