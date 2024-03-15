@@ -99,7 +99,7 @@
         },
         "responses": {
           "200": {
-            "description": "Ok",
+          "description": "Ok",
           "content": {
             "application/json": {
               "schema": {
@@ -169,6 +169,117 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CurrentUnauthorizedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/password/forgot": {
+      "post": {
+        "tags":["Auth"],
+        "summary": "Forgot Password",
+        "parameters":[],
+        "requestBody":{
+          "description": "Email object",
+          "required": true,
+          "content":{
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+          "description": "Ok",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordForgotResponse"
+              }
+            }
+          }
+          },
+          "404":{
+            "description": "Not found",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordForgotErrorResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordForgotBadRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/password/reset/{resetToken}": {
+      "patch": {
+        "tags":["Auth"],
+        "summary": "Reset Password",
+        "parameters":[
+          {
+            "name": "resetToken",
+            "in": "path",
+            "description": "Reset token from a letter sent to the user",
+            "required": true,
+            "schema": {
+              "type": "string",
+							"example": "9dde53dd433357292123b875f7f5f920838e6351b0a0fb02475b97088141fca6"
+            }
+          }
+        ],
+        "requestBody":{
+          "description": "Password object",
+          "required": true,
+          "content":{
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordResetResponse"
+                }
+              }
+            }
+            },
+          "404":{
+            "description": "Not found",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordResetErrorResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordResetBadRequestResponse"
                 }
               }
             }
@@ -720,6 +831,95 @@
 					"message": {
 						"type": "string",
 						"example": "Unauthorized"
+					}
+				}
+      },
+      "ForgotPasswordRequest": {
+        "type": "object",
+        "required": ["email"],
+        "properties":{
+          "email":{
+            "type": "string",
+						"description": "User's email",
+						"format": "email",
+						"pattern": "/^w+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$/",
+            "example": "shevchenko@gmail.com"
+          }
+        }
+      },
+      "PasswordForgotResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Reset password instruction was sent to your email: shevchenko@gmail.com!"
+					}
+				}
+      },
+      "PasswordForgotErrorResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "User does not exist"
+					}
+				}
+      },
+      "PasswordForgotBadRequestResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Bad request"
+					}
+				}
+      },
+      "ResetPasswordRequest": {
+        "type": "object",
+        "required": ["password", "confirmPassword"],
+        "properties":{
+          "password": {
+            "type": "string",
+						"description": "New password",
+						"minLength": "8",
+						"maxLength": "16",
+            "pattern": "/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%*()_]).{8,}$/",
+						"example": "Qwerty123!"
+          },
+          "confirmPassword": {
+            "type": "string",
+						"description": "Confirm password",
+						"minLength": "8",
+						"maxLength": "16",
+            "pattern": "/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%*()_]).{8,}$/",
+						"example": "Qwerty123!"
+          }
+        }
+      },
+      "PasswordResetResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Password reset success"
+					}
+				}
+      },
+      "PasswordResetErrorResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "User not found"
+					}
+				}
+      },
+      "PasswordResetBadRequestResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Password does not match"
 					}
 				}
       },
