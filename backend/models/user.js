@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 const { handleMongooseError, patterns } = require("../helpers");
 
 const registerJoiSchema = Joi.object({
@@ -65,6 +66,8 @@ const userSchema = new Schema(
       type: String,
       default: "",
     },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
   },
   { versionKey: false, timestamps: true }
 );
