@@ -1,30 +1,63 @@
 import { AvatarIcon, CartIcon, HeartIcon } from "assets/icons";
-import { IconWrapper, StyledUserMenu, UserMenuItem } from "./UserMenu.styled";
+import {
+  AuthButton,
+  CartButton,
+  FavoriteButton,
+  IconWrapper,
+  StyledUserMenu,
+  UserMenuItem,
+} from "./UserMenu.styled";
+import { useState } from "react";
+import Modal from "components/Modal";
+import Login from "components/Auth/Login/Login";
 
 const UserMenu: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const showModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <StyledUserMenu>
-      <UserMenuItem>
-        <IconWrapper>
-          <HeartIcon />
-        </IconWrapper>
-        <p>Обране</p>
-      </UserMenuItem>
+    <>
+      <StyledUserMenu>
+        <UserMenuItem>
+          <FavoriteButton>
+            <IconWrapper>
+              <HeartIcon />
+            </IconWrapper>
+            Обране
+          </FavoriteButton>
+        </UserMenuItem>
 
-      <UserMenuItem>
-        <IconWrapper>
-          <CartIcon />
-        </IconWrapper>
-        <p>Кошик</p>
-      </UserMenuItem>
+        <UserMenuItem>
+          <CartButton>
+            <IconWrapper>
+              <CartIcon />
+            </IconWrapper>
+            Кошик
+          </CartButton>
+        </UserMenuItem>
 
-      <UserMenuItem>
-        <IconWrapper>
-          <AvatarIcon />
-        </IconWrapper>
-        <p>Вхід / Реєстрація</p>
-      </UserMenuItem>
-    </StyledUserMenu>
+        <UserMenuItem>
+          <AuthButton onClick={showModal}>
+            <IconWrapper>
+              <AvatarIcon />
+            </IconWrapper>
+            Вхід / Реєстрація
+          </AuthButton>
+        </UserMenuItem>
+      </StyledUserMenu>
+      {isModalOpen && (
+        <Modal close={closeModal} showCloseButton={true}>
+          <Login title="Вхід до акаунту" prompt="Реєстрація нового акаунту" />
+        </Modal>
+      )}
+    </>
   );
 };
 

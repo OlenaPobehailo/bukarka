@@ -1,4 +1,6 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const logger = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
@@ -17,6 +19,8 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
 app.use("/api/books", booksRouter);
