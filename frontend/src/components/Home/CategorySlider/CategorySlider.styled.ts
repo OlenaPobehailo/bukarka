@@ -5,5 +5,6 @@ export const StyledCategorySlider = styled.div`
   margin-right: 32px;
   margin-left: 32px;
   justify-content: space-between;
+  margin-bottom: 48px;
   //flex-direction: column;
 `;

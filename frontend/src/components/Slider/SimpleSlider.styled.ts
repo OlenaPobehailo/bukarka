@@ -16,7 +16,6 @@ export const StyledPrevArrow = styled.div`
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.7);
-  //background: red;
   width: 48px;
   left: 0;
   top: calc((264px - 64px) / 2);
@@ -24,6 +23,9 @@ export const StyledPrevArrow = styled.div`
   height: 64px;
   cursor: pointer;
   z-index: 100;
+  &:hover svg path {
+    stroke: #3D7EFD;
+  }
 `;
 
 export const StyledNextArrow = styled.div`
@@ -37,6 +39,9 @@ export const StyledNextArrow = styled.div`
   top: calc((264px - 64px) / 2);
   height: 64px;
   cursor: pointer;
+  &:hover svg path {
+      stroke: #3D7EFD;
+  }
 `;
 
 export const StyledItemImage = styled.div`

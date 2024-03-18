@@ -11,6 +11,11 @@ export const StyledPoster = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #ffdc00;
+    transition: all 0.05s ease;
+    &:hover span {
+      color: #ffdc00;
+    }
   }
   span {
     display: block;
@@ -25,5 +30,6 @@ export const StyledPoster = styled.div`
     transform: rotate(180deg);
     background-color: #ff8a10;
     color: #1e1e1e;
+    transition: all 1s ease;
   }
 `;

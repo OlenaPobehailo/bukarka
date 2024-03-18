@@ -64,7 +64,7 @@ const CartItem: React.FC<IProps> = ({
       <StyledItemCart>
         <StyledHeart />
         <StyledItemImage id={_id} onClick={handleClick}>
-          <img src={image ? image : images.placeholder} alt="" />
+          <img src={image ? image : images.BookCover} alt="" />
         </StyledItemImage>
         <StyledTitle style={{ width: "192px" }}>
           <div

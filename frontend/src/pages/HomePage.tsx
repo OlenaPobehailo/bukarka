@@ -1,7 +1,6 @@
 import { PageWrapper, StyledCommonWrapper } from "styles/CommonStyled";
-import SimpleSlider from "../../src/components/Slider/SimpleSlider";
-import CategoryPoster from "../components/Home/CategoryPoster/CategoryPoster";
 import CategorySlider from "../components/Home/CategorySlider/CategorySlider";
+import React from "react";
 
 const HomePage: React.FC = () => {
   return (
