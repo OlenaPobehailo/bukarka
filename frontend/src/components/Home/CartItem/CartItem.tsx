@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { StarsWrapper, StyledStarIcon } from "../../Slider/SimpleSlider.styled";
 import {
   StyledItemCart,
-  StyledHeart,
   StyledItemImage,
   StyledTitle,
   StyledPrice,
@@ -13,6 +12,7 @@ import {
 import { images } from "../../../assets/images";
 import ReactStars from "react-rating-stars-component";
 import Modal from "../../Modal";
+import FavoriteButton from "../../FavoriteButton/FavoriteButton";
 
 interface IProps {
   _id: string;
@@ -21,6 +21,7 @@ interface IProps {
   image: string | null;
   price: number;
   rating: number;
+  index: number;
 }
 const CartItem: React.FC<IProps> = ({
   _id,
@@ -29,6 +30,7 @@ const CartItem: React.FC<IProps> = ({
   image,
   price,
   rating,
+  index,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   let navigate = useNavigate();
@@ -62,9 +64,17 @@ const CartItem: React.FC<IProps> = ({
   return (
     <>
       <StyledItemCart>
-        <StyledHeart />
+        <FavoriteButton itemId={_id} />
         <StyledItemImage id={_id} onClick={handleClick}>
-          <img src={image ? image : images.BookCover} alt="" />
+          <img
+            src={
+              image ||
+              (index === 0 && images.BookNetflix) ||
+              (index === 2 && images.BookCover) ||
+              images.BookDarkSide
+            }
+            alt=""
+          />
         </StyledItemImage>
         <StyledTitle style={{ width: "192px" }}>
           <div

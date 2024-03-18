@@ -7,6 +7,7 @@ export const StyledSlider = styled(Slider)`
 `;
 
 export const StyledItemCart = styled.div`
+  margin-top: 0;
   position: relative;
   width: 192px;
 `;
@@ -31,8 +32,9 @@ export const StyledItemImage = styled.div`
 `;
 
 export const StyledTitle = styled.h3`
-  font-size: 14px;
+  font-family: "Montserrat-Semibold";
   font-weight: 600;
+  font-size: 14px;
   line-height: 20px;
   letter-spacing: 0em;
   margin-top: 8px;
@@ -48,8 +50,9 @@ export const StyledTitle = styled.h3`
 `;
 
 export const StyledPrice = styled.div`
-  font-size: 16px;
+  font-family: "Montserrat-Bold";
   font-weight: 700;
+  font-size: 16px;
   line-height: 24px;
   color: #004f98;
   margin-bottom: 8px;
@@ -77,7 +80,8 @@ export const FormButton = styled.button`
   background: var(--bukarka-orange);
   color: var(--bukarka-black);
 
-  font-weight: 600;
+  font-family: "Montserrat-Bold";
+  font-weight: 700;
   font-size: 16px;
   transition: all 0.5s ease;
   &:hover {

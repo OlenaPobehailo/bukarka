@@ -21,8 +21,9 @@ export const StyledPoster = styled.div`
     display: block;
     height: 100%;
     padding: 0 24px;
-    font-size: 40px;
+    font-family: "Montserrat-Extrabold";
     font-weight: 900;
+    font-size: 40px;
     line-height: 48px;
     letter-spacing: 0.05em;
     text-align: center;

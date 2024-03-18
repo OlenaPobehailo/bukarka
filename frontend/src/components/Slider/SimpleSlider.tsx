@@ -29,7 +29,7 @@ interface IProps {
 }
 
 interface IDataBooks {
-  data: IProps[]
+  data: IProps[];
 }
 
 function NextArrow(props: any) {
@@ -56,7 +56,7 @@ function PrevArrow(props: any) {
   );
 }
 
-const SimpleSlider: React.FC<IDataBooks> = ({data}) => {
+const SimpleSlider: React.FC<IDataBooks> = ({ data }) => {
   // const [books, setBooks] = useState<IProps[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = data.length;
@@ -143,11 +143,12 @@ const SimpleSlider: React.FC<IDataBooks> = ({data}) => {
             author={item.author}
             title={item.title}
             rating={item.rating}
+            index={index}
           />
         ))}
       </StyledSlider>
     </div>
   );
-}
+};
 
 export default SimpleSlider;

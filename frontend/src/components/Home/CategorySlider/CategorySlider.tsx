@@ -1,7 +1,7 @@
 import CategoryPoster from "../CategoryPoster/CategoryPoster";
 import SimpleSlider from "../../Slider/SimpleSlider";
 import { StyledCategorySlider } from "./CategorySlider.styled";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { instance } from "../../../utils/fetchInstance";
 
 interface IProps {
@@ -17,15 +17,21 @@ const CategorySlider = () => {
   const [booksNew, setBooksNew] = useState<IProps[]>([]);
   const [booksBestsellers, setBooksBestsellers] = useState<IProps[]>([]);
   const [booksPromotions, setBooksPromotions] = useState<IProps[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await instance.get(`/api/books/new`);
         const books = await response.data;
         setBooksNew(books.data);
       } catch (error) {
-        console.error("Помилка при виконанні запиту:", error);
+        console.error("Error fetching data:", error);
+        setError("Помилка при виконанні запиту:");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -40,6 +46,9 @@ const CategorySlider = () => {
         setBooksBestsellers(books.data);
       } catch (error) {
         console.error("Помилка при виконанні запиту:", error);
+        setError("Помилка при виконанні запиту:");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -54,11 +63,17 @@ const CategorySlider = () => {
         setBooksPromotions(books.data);
       } catch (error) {
         console.error("Помилка при виконанні запиту:", error);
+        setError("Помилка при виконанні запиту:");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <>
