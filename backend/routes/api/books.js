@@ -8,5 +8,6 @@ router.get("/", booksController.getAll);
 router.get("/bestsellers", booksController.getBestsellers);
 router.get("/new", booksController.getNewBooks);
 router.get("/promotions", booksController.getPromotions);
+router.get("/filters", booksController.filtersBooks);
 
 module.exports = router;

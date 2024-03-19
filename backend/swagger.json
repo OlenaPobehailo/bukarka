@@ -527,6 +527,235 @@
         }
       }
     },
+    "/books/filters": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "Returns all filtered books",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "The page number",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }  
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "The number of items per page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            } 
+          },
+          {
+            "name": "title",
+              "in": "query",
+              "description": "Search name of book",
+              "schema": {
+                "type": "string",
+                "example": "Подорож "
+              }   
+          },
+          {
+            "name": "category",
+              "in": "query",
+              "description": "Choose category of book",
+              "schema": {
+                "type": "string",
+                "example": "Дитяча",
+                "enum": [
+                  "Дитяча",
+                  "Художня",
+                  "Навчальна",
+                  "Наукова",
+                  "Подарункові видання",
+                  "Іноземними мовами"
+                ]
+              }   
+          },
+          {
+            "name": "subcategory",
+              "in": "query",
+              "description": "Choose the subject of book",
+              "schema": {
+                "type": "string",
+                "example": "Казки",
+                "enum": [
+                  "Казки",
+                  "Абетки, лічба",
+                  "Бізнес-література",
+                  "Енциклопедії",
+                  "Есеї",
+                  "Вільмебухи",
+                  "Розмальовки",
+                  "Різдвяні, новорічні",
+                  "Романи",
+                  "Навчальні, розвивальні",
+                  "Вірші",
+                  "Про динозаврів",
+                  "Про транспорт",
+                  "Фентезі та фантастика",
+                  "Детективи",
+                  "Комікси",
+                  "Про релігії",
+                  "Про психологію",
+                  "Про фізіологію",
+                  "Психологія",
+                  "Поезія, антології",
+                  "Саморозвиток",
+                  "Суспільні науки",
+                  "Атласи , контурні карти",
+                  "Словники",
+                  "Навчальні, розвивальні",
+                  "Підготовка до уроків"
+                ]
+              }
+          },
+          {
+            "name": "language",
+              "in": "query",
+              "description": "Choose language of book",
+              "schema": {
+                "type": "string",
+                "example": "Українська",
+                "enum": [
+                  "Українська",
+                  "Англійська",
+                  "Французська",
+                  "Німецька"
+                ]
+              }
+          },
+          {
+            "name": "author",
+              "in": "query",
+              "description": "Choose author of book",
+              "schema": {
+                "type": "string",
+                "example": "Олена Степаненко",
+                "enum": [
+                  "Олена Степаненко",
+                  "Олексій Петренко",
+                  "Наталія Петренко",
+                  "Анатолій Мельник",
+                  "Михайло Гордієнко",
+                  "Сергій Лебідь",
+                  "та інші"
+                ]
+              }
+          },
+          {
+            "name": "publisher",
+              "in": "query",
+              "description": "Choose publisher of book",
+              "schema": {
+                "type": "string",
+                "example": "Дивосвіт",
+                "enum": [
+                  "Дивосвіт",
+                  "Казкове видавництво",
+                  "Ранок",
+                  "Інновація",
+                  "Літера",
+                  "Світанок",
+                  "та інші"
+                ]
+              }
+          },
+          {
+            "name": "priceMin",
+              "in": "query",
+              "description": "Search books from value of min price",
+              "schema": {
+                "type": "number",
+                "example": 100
+              }
+          },
+          {
+            "name": "priceMax",
+              "in": "query",
+              "description": "Search books to the value of max price",
+              "schema": {
+                "type": "number",
+                "example": 500
+              }
+          },
+          {
+            "name": "ratingMin",
+              "in": "query",
+              "description": "Search books from value of min rating",
+              "schema": {
+                "type": "number",
+                "example": 4
+              }
+          },
+          {
+            "name": "ratingMax",
+              "in": "query",
+              "description": "Search books to the value of max rating",
+              "schema": {
+                "type": "number",
+                "example": 5
+              }
+          },
+          {
+            "name": "promotions",
+              "in": "query",
+              "description": "Search books at promotions",
+              "schema": {
+                "type": "boolean",
+                "default": "false",
+                "example": "true"
+              } 
+          },
+          {
+            "name": "bestsellers",
+              "in": "query",
+              "description": "Search bestsellers books",
+              "schema": {
+                "type": "boolean",
+                "default": "false",
+                "example": "true"
+              }
+          },
+          {
+            "name": "new",
+              "in": "query",
+              "description": "Search new books",
+              "schema": {
+                "type": "boolean",
+                "default": "false",
+                "example": "true"
+              }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilteredBooksListResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Books not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/categories": {
       "get": {
         "tags": [
@@ -1041,6 +1270,121 @@
           }
         }
       },
+      "FilteredBooksListResponse": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "number",
+            "example": 2
+          },
+          "page": {
+            "type": "number",
+            "example": 1
+          },
+          "limit": {
+            "type": "number",
+            "example": 12
+          },
+          "books": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "Book ID",
+                "example": "65ed9f233000741d129b5557"
+              },
+              "author": {
+                "type": "string",
+                "description": "Book's author",
+                "example": "Олена Степаненко"
+              },
+              "title": {
+                "type": "string",
+                "description": "Book's title",
+                "example": "Подорож на планету Марс"
+              },
+              "language": {
+                "type": "string",
+                "description": "Language",
+                "example": "українська"
+              },
+              "publisher": {
+                "type": "string",
+                "description": "Publisher",
+                "example": "Дивосвіт"
+              },
+              "price": {
+                "type": "number",
+                "description": "Book's price",
+                "example": 100
+              },
+              "rating": {
+                "type": "number",
+                "description": "Rating",
+                "example": 4.6
+              },
+              "category": {
+                "type": "string",
+                "description": "Book's category",
+                "example": "Дитяча"
+              },
+              "subcategory": {
+                "type": "string",
+                "description": "Book's subcategory",
+                "example": "Фентезі та фантастика"
+              },
+              "age": {
+                "type": "string",
+                "description": "Recommended age",
+                "example": "9 - 12"
+              },
+              "genre": {
+                "type":"array",
+                "example": ["Дитяча", "Фентезі", "Фантастика"]
+              },
+              "format": {
+                "type": "string",
+                "description": "Format",
+                "example": "205 х 260 мм"
+              },
+              "cover": {
+                "type": "string",
+                "description": "Book's cover",
+                "example": "Тверда"
+              },
+              "pages": {
+                "type": "number",
+                "description": "Number of book's pages",
+                "example": 120
+              },
+              "new": {
+                "type": "boolean",
+                "description": "State",
+                "example": false
+              },
+              "promotions": {
+                "type": "boolean",
+                "description": "Promotions",
+                "example": false
+              },
+              "bestsellers": {
+                "type": "boolean",
+                "description": "Bestsellers",
+                "example": false
+              },
+              "year": {
+                "type": "string",
+                "description": "Year of publication",
+                "example": "2020"
+              },
+              "description": {
+                "type": "string",
+                "description": "Book's description",
+                "example": "Захоплива пригода про маленьких друзів, які вирушають у захопливу подорож у невідомість космосу на загадкову планету Марс. Це захопливе фантастичне оповідання, яке привабить читачів усіх вікових категорій своєю цікавою історією та несподіваними обертами подій."
+              }
+            }
+          }
+      },
       "CategoryResponse": {
         "type": "object",
         "properties": {
@@ -1093,13 +1437,14 @@
           }
         }
       }
-    },
-    "securitySchemes": {
-      "Bearer": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
+      },
+      "securitySchemes": {
+        "Bearer": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
       }
-    }
   } 
+}
 }
