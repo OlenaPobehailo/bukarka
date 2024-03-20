@@ -141,6 +141,15 @@ const filtersBooks = async (req, res) => {
     limit,
     books,
   });
+
+const getBookById = async (req, res) => {
+  const { id } = req.params;
+  const book = await Book.findById(id);
+
+  if (!book) {
+    throw HttpError(404, `Book with id=${id} not found`);
+  }
+  res.json(book);
 };
 
 module.exports = {
@@ -149,4 +158,5 @@ module.exports = {
   getNewBooks: ctrlWrapper(getNewBooks),
   getPromotions: ctrlWrapper(getPromotions),
   filtersBooks: ctrlWrapper(filtersBooks),
+  getBookById: ctrlWrapper(getBookById),
 };
