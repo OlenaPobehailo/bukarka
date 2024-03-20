@@ -141,6 +141,7 @@ const filtersBooks = async (req, res) => {
     limit,
     books,
   });
+};
 
 const getBookById = async (req, res) => {
   const { id } = req.params;
