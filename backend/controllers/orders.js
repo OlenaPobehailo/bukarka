@@ -86,9 +86,22 @@ const deleteOrder = async (req, res) => {
   });
 };
 
+const deleteOrderItem = async (req, res) => {
+  const { orderItemId } = req.params;
+
+  const deletedOrderItem = await OrderItem.findByIdAndDelete(orderItemId);
+
+  if (!deletedOrderItem) {
+    return res.status(404).json({ message: "Елемент замовлення не знайдено" });
+  }
+
+  res.status(200).json({ message: "Елемент замовлення успішно видалено" });
+};
+
 module.exports = {
   addToCart: ctrlWrapper(addToCart),
   getAllOrders: ctrlWrapper(getAllOrders),
   updateBookQuantity: ctrlWrapper(updateBookQuantity),
   deleteOrder: ctrlWrapper(deleteOrder),
+  deleteOrderItem: ctrlWrapper(deleteOrderItem),
 };
