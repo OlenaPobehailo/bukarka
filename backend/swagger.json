@@ -785,6 +785,298 @@
           }
         }
       }
+    },
+    "/orders/{productId}": {
+      "post": {
+        "summary": "Add one book to cart",
+        "tags": ["Orders"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "required": true,
+            "description": "book ID to add to cart",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The book has been successfully added to the cart",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message about successful adding to cart"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "OK"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "description": "Код відповіді"
+                    },
+                    "bookAdded": {
+                      "type": "object",
+                      "description": "Book added to cart",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "description": "Book ID"
+                        },
+                        "quantity": {
+                          "type": "integer",
+                          "description": "Book quantity"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Book not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "summary": "Get all orders with total prices",
+        "tags": ["Orders"],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "Order ID"
+                      },
+                      "orderItems": {
+                        "type": "array",
+                        "description": "List of order items",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "description": "Order item ID"
+                            },
+                            "quantity": {
+                              "type": "integer",
+                              "description": "Quantity of the item"
+                            },
+                            "product": {
+                              "type": "object",
+                              "description": "Product details",
+                              "properties": {
+                                "_id": {
+                                  "type": "string",
+                                  "description": "Product ID"
+                                },
+                                "title": {
+                                  "type": "string",
+                                  "description": "Product title"
+                                },
+                                "price": {
+                                  "type": "number",
+                                  "description": "Product price"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "Order status"
+                      },
+                      "totalPrice": {
+                        "type": "number",
+                        "description": "Total price of the order"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{orderId}/orderItems/{orderItemId}": {
+      "patch": {
+        "summary": "Update book quantity in order",
+        "tags": ["Orders"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "description": "Order ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "orderItemId",
+            "required": true,
+            "description": "Order item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "quantity": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "New quantity of the book"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Book quantity updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "Updated order item ID"
+                    },
+                    "quantity": {
+                      "type": "integer",
+                      "description": "Updated quantity of the book"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order item not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{orderId}": {
+      "delete": {
+        "summary": "Delete order and associated order items",
+        "tags": ["Orders"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "description": "Order ID to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order and associated items deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message about successful deletion"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/orderItems/{orderItemId}": {
+      "delete": {
+        "summary": "Delete order item",
+        "tags": ["Orders"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderItemId",
+            "required": true,
+            "description": "Order item ID to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order item deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message about successful deletion"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
     
   },
