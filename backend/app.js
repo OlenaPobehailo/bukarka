@@ -11,6 +11,7 @@ const swaggerDocument = require("./swagger.json");
 const authRouter = require("./routes/api/auth");
 const booksRouter = require("./routes/api/books");
 const categoriesRouter = require("./routes/api/categories");
+const ordersRouter = require("./routes/api/orders");
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRouter);
 app.use("/api/books", booksRouter);
 app.use("/api/categories", categoriesRouter);
+app.use("/api/orders", ordersRouter);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
