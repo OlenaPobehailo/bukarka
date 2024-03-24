@@ -12,6 +12,7 @@ const authRouter = require("./routes/api/auth");
 const booksRouter = require("./routes/api/books");
 const categoriesRouter = require("./routes/api/categories");
 const ordersRouter = require("./routes/api/orders");
+const novaPoshtaRouter = require("./routes/api/novaposhta");
 
 const app = express();
 
@@ -27,6 +28,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/books", booksRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/orders", ordersRouter);
+app.use('/api/novaposhta', novaPoshtaRouter);
+
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
