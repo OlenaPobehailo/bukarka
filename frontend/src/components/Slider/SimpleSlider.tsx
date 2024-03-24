@@ -64,7 +64,7 @@ const SimpleSlider: React.FC<IDataBooks> = ({ data }) => {
   const booksData = useSelector((state: IRootState) => selectBooksData(state));
   const status = useSelector((state: IRootState) => selectBooksStatus(state));
   const error = useSelector((state: IRootState) => selectBooksError(state));
-  console.log(booksData);
+  // console.log(booksData);
   //
   // useEffect(() => {
   //   dispatch(fetchBooksList());
