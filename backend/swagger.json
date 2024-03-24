@@ -1187,6 +1187,127 @@
       }
     },
     "/orders/{orderId}": {
+      "get": {
+        "summary": "Get order by ID",
+        "tags": ["Orders"],
+        "description": "Get order details by order ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "description": "Order ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request. Returns the order with details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "Order ID"
+                    },
+                    "orderItems": {
+                      "type": "array",
+                      "description": "List of order items",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "description": "Order item ID"
+                          },
+                          "quantity": {
+                            "type": "integer",
+                            "description": "Quantity of the item"
+                          },
+                          "product": {
+                            "type": "object",
+                            "description": "Product details",
+                            "properties": {
+                              "_id": {
+                                "type": "string",
+                                "description": "Product ID"
+                              },
+                              "title": {
+                                "type": "string",
+                                "description": "Product title"
+                              },
+                              "price": {
+                                "type": "number",
+                                "description": "Product price"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Order status"
+                    },
+                    "totalPrice": {
+                      "type": "number",
+                      "description": "Total price of the order"
+                    },
+                    "customerInfo": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Customer name"
+                        },
+                        "surname": {
+                          "type": "string",
+                          "description": "Customer's last name"
+                        },
+                        "email": {
+                          "type": "string",
+                          "format": "email",
+                          "description": "Customer's email"
+                        },
+                        "phoneNumber": {
+                          "type": "string",
+                          "description": "Customer`s phone number"
+                        },
+                        "city": {
+                          "type": "string",
+                          "description": "City of delivery"
+                        },
+                        "comment": {
+                          "type": "string",
+                          "description": "Comment on the order"
+                        }
+                      }
+                    },
+                    "isGuestOrder": {
+                      "type": "boolean",
+                      "description": "Indicates if the order is placed by a guest user"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order not found. Returns an error message.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      },
       "delete": {
         "summary": "Delete order and associated order items",
         "tags": ["Orders"],
@@ -1257,6 +1378,191 @@
                     "message": {
                       "type": "string",
                       "description": "Message about successful deletion"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/checkout/{orderId}": {
+      "put": {
+        "summary": "submit the order",
+        "tags": ["Orders"],
+        "description": "submittting the order with specified customer data and changing the status to \"processing\".",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "description": "order ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Customer name"
+                  },
+                  "surname": {
+                    "type": "string",
+                    "description": "Customer's last name"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Customer's email"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "description": "Customer`s phone number"
+                  },
+                  "city": {
+                    "type": "string",
+                    "description": "City of delivery"
+                  },
+                  "comment": {
+                    "type": "string",
+                    "description": "Comment on the order"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request. Returns a message about successful order placement and order details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message about successful order placement"
+                    },
+                    "order": {
+                      "type": "object",
+                      "properties": {
+                        "customerInfo": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Customer name"
+                            },
+                            "surname": {
+                              "type": "string",
+                              "description": "Customer's last name"
+                            },
+                            "email": {
+                              "type": "string",
+                              "format": "email",
+                              "description": "Customer's email"
+                            },
+                            "phoneNumber": {
+                              "type": "string",
+                              "description": "Customer`s phone number"
+                            },
+                            "city": {
+                              "type": "string",
+                              "description": "City of delivery"
+                            },
+                            "comment": {
+                              "type": "string",
+                              "description": "Comment on the order"
+                            }
+                          }
+                        },
+                        "_id": {
+                          "type": "string",
+                          "description": "Order ID"
+                        },
+                        "orderItems": {
+                          "type": "array",
+                          "description": "List of order items",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string",
+                                "description": "Order item ID"
+                              },
+                              "quantity": {
+                                "type": "integer",
+                                "description": "Quantity of the item"
+                              },
+                              "product": {
+                                "type": "object",
+                                "description": "Product details",
+                                "properties": {
+                                  "_id": {
+                                    "type": "string",
+                                    "description": "Product ID"
+                                  },
+                                  "title": {
+                                    "type": "string",
+                                    "description": "Product title"
+                                  },
+                                  "price": {
+                                    "type": "number",
+                                    "description": "Product price"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "Order status"
+                        },
+                        "totalPrice": {
+                          "type": "number",
+                          "description": "Total price of the order"
+                        },
+                        "isGuestOrder": {
+                          "type": "boolean",
+                          "description": "Indicates if the order is placed by a guest user"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date and time when the order was created"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date and time when the order was last updated"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Замовлення не знайдено. Повертає повідомлення про помилку.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Повідомлення про помилку"
                     }
                   }
                 }
