@@ -24,7 +24,7 @@ const orderSchema = new Schema(
 
     isGuestOrder: {
       type: Boolean,
-      default: false,
+      default: true,
     },
 
     customerInfo: {
@@ -52,7 +52,7 @@ const orderSchema = new Schema(
           return this.isModified("customerInfo");
         },
       },
-      address: {
+      city: {
         type: String,
         required: function () {
           return this.isModified("customerInfo");

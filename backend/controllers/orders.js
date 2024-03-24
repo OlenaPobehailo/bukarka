@@ -110,21 +110,31 @@ const getOrderById = async (req, res) => {
     return res.status(404).json({ message: "Замовлення не знайдено" });
   }
 
+  const totalPrice = order.orderItems.reduce((acc, item) => {
+    return acc + item.quantity * item.product.price;
+  }, 0);
+
+  order.totalPrice = totalPrice;
+  await order.save();
+
   res.status(200).json(order);
 };
 
 const placeOrder = async (req, res) => {
-  const { name, surname, email, phoneNumber, address, comment } = req.body;
+  const { name, surname, email, phoneNumber, city, comment } = req.body;
   const { orderId } = req.params;
 
-  const order = await Order.findById(orderId);
+  const order = await Order.findById(orderId).populate({
+    path: "orderItems",
+    populate: { path: "product" },
+  });
   // console.log(order);
 
   if (!order) {
     return res.status(404).json({ message: "Замовлення не знайдено" });
   }
 
-  order.customerInfo = { name, surname, email, phoneNumber, address, comment };
+  order.customerInfo = { name, surname, email, phoneNumber, city, comment };
   order.status = "processing";
   await order.save();
 
