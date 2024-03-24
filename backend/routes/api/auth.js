@@ -18,6 +18,10 @@ router.post("/logout", authenticate, AuthController.logout);
 router.get("/current", authenticate, AuthController.current);
 
 router.post("/password/forgot", AuthController.forgotPassword);
-router.patch("/password/reset/:resetToken", AuthController.resetPassword);
+router.patch(
+  "/password/reset/:resetToken",
+  validateBody(schemas.resetPasswordJoiSchema),
+  AuthController.resetPassword
+);
 
 module.exports = router;

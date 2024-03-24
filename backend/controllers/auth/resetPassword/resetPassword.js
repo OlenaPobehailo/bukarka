@@ -2,8 +2,9 @@ const asyncHandler = require("express-async-handler");
 const { HttpError } = require("../../../helpers");
 const crypto = require("crypto");
 const { User } = require("../../../models/user");
-const getResetPasswordTemplate = require("../../../utils/emailTemplates");
+
 const { sendEmail } = require("../../../servises/emailServise/emailServise");
+const { getResetPasswordTemplate } = require("../../../utils/emailTemplates");
 const { BASE_URL } = process.env;
 
 const forgotPassword = asyncHandler(async (req, res) => {

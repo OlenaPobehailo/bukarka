@@ -15,6 +15,25 @@ const loginJoiSchema = Joi.object({
   email: Joi.string().pattern(patterns.email).required(),
   password: Joi.string().min(8).max(16).pattern(patterns.password).required(),
 });
+const resetPasswordJoiSchema = Joi.object({
+  password: Joi.string().min(8).max(16).pattern(patterns.password).required(),
+  confirmPassword: Joi.string()
+    .min(8)
+    .max(16)
+    .pattern(patterns.password)
+    .required(),
+});
+const editUserJoiSchema = Joi.object({
+  name: Joi.string().pattern(patterns.name).min(2).max(32),
+  surname: Joi.string().pattern(patterns.name).min(2).max(32),
+  birthDay: Joi.date(),
+  phone: Joi.string().pattern(patterns.phone).min(9).max(9),
+  email: Joi.string().pattern(patterns.email),
+  oldPassword: Joi.string().min(8).max(16).pattern(patterns.password),
+  newPassword: Joi.string().min(8).max(16).pattern(patterns.password),
+  confirmNewPassword: Joi.string().min(8).max(16).pattern(patterns.password),
+});
+
 const userSchema = new Schema(
   {
     name: {
@@ -30,6 +49,9 @@ const userSchema = new Schema(
       required: [true, "Set surname for user"],
       minlength: [2, "Surname must be at list 2 characters"],
       maxLength: [32, "Surname must not be more then 32 characters"],
+    },
+    birthDay: {
+      type: String,
     },
     phone: {
       type: String,
@@ -84,6 +106,8 @@ userSchema.post("save", handleMongooseError);
 const schemas = {
   registerJoiSchema,
   loginJoiSchema,
+  resetPasswordJoiSchema,
+  editUserJoiSchema,
 };
 
 const User = model("user", userSchema);
