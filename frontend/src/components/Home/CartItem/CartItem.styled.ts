@@ -83,8 +83,11 @@ export const FormButton = styled.button`
   font-family: "Montserrat-Bold";
   font-weight: 700;
   font-size: 16px;
-  transition: all 0.5s ease;
+  //transition: all 0.5s ease;
   &:hover {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+  }
+  &:focus {
     color: #ffdc00;
   }
 `;

@@ -9,6 +9,7 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 
 const authRouter = require("./routes/api/auth");
+const profileRouter = require("./routes/api/profile");
 const booksRouter = require("./routes/api/books");
 const categoriesRouter = require("./routes/api/categories");
 const ordersRouter = require("./routes/api/orders");
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
+app.use("/api/profile", profileRouter);
 app.use("/api/books", booksRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/orders", ordersRouter);

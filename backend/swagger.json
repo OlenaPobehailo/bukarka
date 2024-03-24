@@ -28,6 +28,10 @@
     {
       "name": "Books",
       "description": "Books endpoints"
+    },
+    {
+      "name": "Profile",
+      "description": "User's profile endpoints"
     }
   ],
   "paths": {
@@ -141,6 +145,16 @@
         "responses": {
           "204": {
             "description": "No content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -168,7 +182,7 @@
             "content":{
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CurrentUnauthorizedResponse"
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
                 }
               }
             }
@@ -280,6 +294,180 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PasswordResetBadRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get":{
+        "tags":["Profile"],
+        "summary": "Returns all user's profile data",
+        "parameters":[],
+        "security": [{ "Bearer": [] }],
+        "requestBody":{},
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/edit": {
+      "put": {
+        "tags":["Profile"],
+        "summary": "Edit profile user's data",
+        "parameters":[],
+        "security": [{ "Bearer": [] }],
+        "requestBody":{
+          "description": "Registration's object",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileEditRequest"
+              }
+            }
+          } 
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileEditResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordResetBadRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/newsletter": {
+      "get": {
+        "tags":["Profile"],
+        "summary": "Change user's newsletter status",
+        "parameters":[],
+        "security": [{ "Bearer": [] }],
+        "requestBody":{},
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsletterResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "404":{
+            "description": "Not found",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsletterErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/newsletter/activate/{activateToken}": {
+      "get":{
+        "tags":["Profile"],
+        "summary": "Activate newsletter subscribtion",
+        "parameters":[
+          {
+            "name": "activateToken",
+            "in": "path",
+            "description": "Activate token from the letter sent to the user",
+            "required": true,
+            "schema": {
+              "type": "string",
+							"example": "73e395161832d8e9cfeade6166519065a4ff16845a1e380a05f9450a3e89254c"
+            }
+          }
+        ],
+        "requestBody": {},
+        "responses": {
+          "200":{
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsletterActivateResponse"
+                }
+              }
+            }
+          },
+          "404":{
+            "description": "Not found",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsletterErrorResponse"
+                }
+              }
+            }
+          },
+          "400":{
+            "description": "Bad request",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsletterBadRequestResponse"
                 }
               }
             }
@@ -1652,12 +1840,12 @@
           } 
         }
       },
-      "CurrentUnauthorizedResponse": {
+      "UnauthorizedResponse": {
         "type": "object",
 				"properties": {
 					"message": {
 						"type": "string",
-						"example": "Unauthorized"
+						"example": "Unauthorized User"
 					}
 				}
       },
@@ -1747,6 +1935,203 @@
 					"message": {
 						"type": "string",
 						"example": "Password does not match"
+					}
+				}
+      },
+      "ProfileResponse": {
+        "type": "object",
+        "properties": {
+          "owner":{
+            "type": "object",
+            "properties": {
+              "id": {
+                "type":"string",
+                "description": "User's ID",
+                "example": "65feffc9107a46cdc7d24a48"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Олена"
+              },
+              "surname":{
+                "type": "string",
+                "description": "User's surname",
+                "example": "Шевченко"
+              },
+              "phone":{
+                "type": "string",
+                "description": "User's phone",
+                "example": "961456789"
+              },
+              "email":{
+                "type": "string",
+                "description": "User's email",
+                "example": "shevchenko@gmail.com"
+              },
+              "subscription": {
+                "type": "string",
+                "description": "User status",
+                "example": "beginner"
+              },
+              "birthDay": {
+                "type": "string",
+                "description": "User permition",
+                "example": "29.03.1985"
+              }
+            }
+          },
+          "newsletter": {
+            "type": "boolean",
+            "description": "User newsletter status",
+            "example": "false"
+          } 
+        }
+      },
+      "ProfileEditRequest": {
+        "type": "object",
+        "required": ["name", "surname", "phone", "email", "birthDay", "oldPassword", "newPassword", "confirmNewPassword"],
+        "properties": {
+          "name": {
+            "type": "string",
+						"description": "User's name",
+            "pattern": "/^[a-zA-Zа-яА-ЯЇїІіЄєҐґ]*$/",
+						"example": "Ірина"
+          },
+          "surname": {
+            "type": "string",
+						"description": "User's surname",
+            "pattern": "/^[a-zA-Zа-яА-ЯЇїІіЄєҐґ]*$/",
+						"example": "Шевченко"
+          },
+          "phone": {
+            "type": "string",
+						"description": "User's phone",
+            "pattern": "/^d{9}$/",
+            "minLength": "9",
+            "example": "961556789"
+          },
+          "email": {
+            "type": "string",
+						"description": "User's email",
+						"format": "email",
+						"pattern": "/^w+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$/",
+            "example": "cikove6410@glaslack.com"
+          },
+          "birthDay":{
+            "type": "integer",
+            "description": "User's birth day",
+            "example": "03.29.1985"
+          },
+          "oldPassword": {
+            "type": "string",
+						"description": "User's password",
+						"minLength": "8",
+						"maxLength": "16",
+            "pattern": "/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%*()_]).{8,}$/",
+						"example": "Qwerty123!"
+          },
+          "newPassword": {
+            "type": "string",
+						"description": "User's password",
+						"minLength": "8",
+						"maxLength": "16",
+            "pattern": "/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%*()_]).{8,}$/",
+						"example": "Qwerty123$"
+          },
+          "confirmNewPassword": {
+            "type": "string",
+						"description": "User's password",
+						"minLength": "8",
+						"maxLength": "16",
+            "pattern": "/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%*()_]).{8,}$/",
+						"example": "Qwerty123$"
+          }
+        }
+      },
+      "ProfileEditResponse": {
+        "type": "object",
+        "properties": {
+          "owner":{
+            "type": "object",
+            "properties": {
+              "id": {
+                "type":"string",
+                "description": "User's ID",
+                "example": "65feffc9107a46cdc7d24a48"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Ірина"
+              },
+              "surname":{
+                "type": "string",
+                "description": "User's surname",
+                "example": "Шевченко"
+              },
+              "phone":{
+                "type": "string",
+                "description": "User's phone",
+                "example": "961556789"
+              },
+              "email":{
+                "type": "string",
+                "description": "User's email",
+                "example": "cikove6410@glaslack.com"
+              },
+              "subscription": {
+                "type": "string",
+                "description": "User status",
+                "example": "beginner"
+              },
+              "birthDay": {
+                "type": "string",
+                "description": "User permition",
+                "example": "29.03.1985"
+              }
+            }
+          },
+          "newsletter": {
+            "type": "boolean",
+            "description": "User newsletter status",
+            "example": "false"
+          } 
+        }
+      },
+      "NewsletterResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Newslatter activation instruction was sent to your email: cikove6410@glaslack.com!"
+					}
+				}
+      },
+      "NewsletterErrorResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "User not found"
+					}
+				}
+      },
+      "NewsletterActivateResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Newsletter activate success"
+					}
+				}
+      },
+      "NewsletterBadRequestResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Your newsletter subscription already activated"
 					}
 				}
       },

@@ -36,8 +36,9 @@ const CartItem: React.FC<IProps> = ({
   let navigate = useNavigate();
   const firstExample = {
     size: 20,
+    count: 5,
     edit: false,
-    emptyIcon: <StyledStarIcon fillcolor="white" />,
+    emptyIcon: <StyledStarIcon fillColor="#FFFBFF" />,
     filledIcon: <StyledStarIcon />,
   };
 
@@ -91,7 +92,7 @@ const CartItem: React.FC<IProps> = ({
           </div>
         </StyledNameAuthor>
         <StarsWrapper>
-          <ReactStars {...firstExample} value={rating} />
+          <ReactStars {...firstExample} value={index === 0 ? 5 : rating} />
           {/*<div>{rating}</div>*/}
         </StarsWrapper>
         <StyledPrice>{price} грн</StyledPrice>
