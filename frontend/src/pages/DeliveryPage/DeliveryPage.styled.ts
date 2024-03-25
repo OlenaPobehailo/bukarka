@@ -22,6 +22,7 @@ export const Label = styled.p`
 
   background-color: var(--bukarka-yellow);
 
+  font-family: "Montserrat-Semibold";
   font-weight: 600;
   font-size: 20px;
   line-height: 1.2;
@@ -45,14 +46,14 @@ export const Menu = styled.ul`
 `;
 
 export const MenuItem = styled.li`
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-
   color: var(--bukarka-black);
 
   button {
     background-color: transparent;
+    font-family: "Montserrat-Medium";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
   }
 `;
 
@@ -82,7 +83,8 @@ export const HiddenSubTitle = styled.h3`
 `;
 
 export const AccentText = styled.p`
-  margin-bottom: 16px;
+font-family: "Montserrat-Semibold";;
+  margin-bottom: 20px;
   font-weight: 600;
   font-size: 14px;
   line-height: 1.43;
@@ -93,6 +95,7 @@ export const AccentText = styled.p`
 export const SubTitle = styled.h2`
   margin-bottom: 16px;
 
+  font-family: "Montserrat-Semibold";;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.5;

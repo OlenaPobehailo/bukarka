@@ -1,4 +1,4 @@
-import { PageWrapper, StyledCommonWrapper } from "styles/CommonStyled";
+import { InfoPageWrapper, PageWrapper, StyledCommonWrapper } from "styles/CommonStyled";
 import {
   Button,
   Checkbox,
@@ -23,7 +23,7 @@ import Subscribe from "components/Subscribe";
 const ContactsPage: React.FC = () => {
   return (
     <StyledCommonWrapper>
-      <PageWrapper>
+      <InfoPageWrapper>
         <Wrapper>
           <Title>Контакти і зворотний зв’язок</Title>
           <Top>
@@ -74,7 +74,7 @@ const ContactsPage: React.FC = () => {
           </FormWrapper>
           <Subscribe />
         </Wrapper>
-      </PageWrapper>
+      </InfoPageWrapper>
     </StyledCommonWrapper>
   );
 };

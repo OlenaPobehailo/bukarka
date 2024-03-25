@@ -16,8 +16,8 @@ export const StyledCommonWrapper = styled.div`
 
   @media screen and (min-width: 1440px) {
     max-width: 1296px;
-  //  padding-left: 72px;
-  //  padding-right: 72px;
+    //  padding-left: 72px;
+    //  padding-right: 72px;
   }
 `;
 
@@ -31,10 +31,20 @@ export const PageWrapper = styled.div`
   background-color: var(--bukarka-white);
 `;
 
+export const InfoPageWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  /* margin-top: 108px; */
+  background-color: var(--bukarka-white);
+`;
+
 export const Aside = styled.aside`
   position: fixed;
   min-width: 296px;
-  padding-left: 31px;
+  padding-left: 32px;
   margin-left: auto;
   overflow-y: auto;
   top: 108px;
@@ -43,8 +53,7 @@ export const Aside = styled.aside`
 `;
 
 export const Main = styled.main`
-  /* width: 100%; */
-  margin-left: 296px;
+  margin-left: 346px;
   overflow-y: auto;
   /* flex-grow: 1; */
   margin-top: 104px;

@@ -1,7 +1,7 @@
 import {
   Aside,
+  InfoPageWrapper,
   Main,
-  PageWrapper,
   StyledCommonWrapper,
 } from "styles/CommonStyled";
 import {
@@ -17,7 +17,7 @@ import Subscribe from "components/Subscribe";
 const BookClubPage: React.FC = () => {
   return (
     <StyledCommonWrapper>
-      <PageWrapper>
+      <InfoPageWrapper>
         <Aside>
           <Label>Book Club</Label>
           {/* <Image src={images.placeholder} width="296" height="419" /> */}
@@ -68,10 +68,10 @@ const BookClubPage: React.FC = () => {
             </Text>
           </AboutBookClub>
         </Main>
-      </PageWrapper>
-      <Wrapper>
-        <Subscribe />
-      </Wrapper>
+        <Wrapper>
+          <Subscribe />
+        </Wrapper>
+      </InfoPageWrapper>
     </StyledCommonWrapper>
   );
 };
