@@ -25,8 +25,9 @@ import Subscribe from "components/Subscribe";
 const DeliveryPage: React.FC = () => {
   const handleLinkClick = (id: string) => {
     const element = document.getElementById(id);
+    const headerHeight = 108;
     if (element) {
-      const topOffset = element.offsetTop;
+      const topOffset = element.offsetTop - headerHeight;
       window.scrollTo({
         top: topOffset,
         behavior: "smooth",
