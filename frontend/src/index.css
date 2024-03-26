@@ -8,6 +8,12 @@
   --bukarka-light-grey-1: #dad3cd;
   --bukarka-light-grey-2: #efece9;
   --bukarka-blue-heart: #3d7efd;
+
+  --regular: "Montserrat-Regular", sans-serif;
+  --medium: "Montserrat-Medium", sans-serif;
+  --semibold: "Montserrat-Semibold", sans-serif;
+  --bold: "Montserrat-Bold", sans-serif;
+  --extrabold: "Montserrat-Extrabold", sans-serif;
 }
 
 @font-face {
@@ -61,5 +67,5 @@
 
 body {
   margin: 0;
-  font-family: "Montserrat-Regular", sans-serif;
+  font-family: var(--regular);
 }

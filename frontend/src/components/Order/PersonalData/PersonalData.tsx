@@ -1,5 +1,5 @@
-import { SubTitle, Wrapper } from "../OrderCommonStyled";
-import { Input, Label, PersonalDataInputs } from "./PersonalData.styled";
+import { Label, SubTitle, Wrapper } from "../OrderCommonStyled";
+import { Input, PersonalDataInputs } from "./PersonalData.styled";
 
 const PersonalData: React.FC = () => {
   return (

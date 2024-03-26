@@ -22,7 +22,7 @@ export const Label = styled.p`
 
   background-color: var(--bukarka-yellow);
 
-  font-family: "Montserrat-Semibold";
+  font-family: var(--semibold);
   font-weight: 600;
   font-size: 20px;
   line-height: 1.2;
@@ -50,7 +50,7 @@ export const MenuItem = styled.li`
 
   button {
     background-color: transparent;
-    font-family: "Montserrat-Medium";
+    font-family: var(--medium);
     font-weight: 500;
     font-size: 16px;
     line-height: 1.5;
@@ -83,7 +83,7 @@ export const HiddenSubTitle = styled.h3`
 `;
 
 export const AccentText = styled.p`
-font-family: "Montserrat-Semibold";;
+  font-family: var(--semibold);
   margin-bottom: 20px;
   font-weight: 600;
   font-size: 14px;
@@ -95,7 +95,7 @@ font-family: "Montserrat-Semibold";;
 export const SubTitle = styled.h2`
   margin-bottom: 16px;
 
-  font-family: "Montserrat-Semibold";;
+  font-family: var(--semibold);
   font-weight: 600;
   font-size: 16px;
   line-height: 1.5;

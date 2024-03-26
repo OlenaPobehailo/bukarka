@@ -24,22 +24,10 @@ export const Input = styled.input`
   height: 40px;
 
   &::placeholder {
-    font-family: "Montserrat-Regular";
-    font-weight: 400;
+    font-family: var(--regular);
     font-size: 16px;
 
     line-height: 1.5;
     color: var(--bukarka-dark-grey);
   }
-`;
-
-export const Label = styled.label`
-  display: block;
-  margin-bottom: 8px;
-
-  font-family: "Montserrat-Semibold";
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--bukarka-black);
 `;

@@ -11,7 +11,7 @@ export const OrderPageWrapper = styled.div`
 export const Title = styled.h1`
   margin-bottom: 32px;
 
-  font-family: "Montserrat-Medium";
+  font-family: var(--semibold);
   font-weight: 600;
   font-size: 24px;
   line-height: 1.33;
