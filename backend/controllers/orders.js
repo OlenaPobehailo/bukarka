@@ -98,10 +98,55 @@ const deleteOrderItem = async (req, res) => {
   res.status(200).json({ message: "Елемент замовлення успішно видалено" });
 };
 
+const getOrderById = async (req, res) => {
+  const { orderId } = req.params;
+
+  const order = await Order.findById(orderId).populate({
+    path: "orderItems",
+    populate: { path: "product" },
+  });
+
+  if (!order) {
+    return res.status(404).json({ message: "Замовлення не знайдено" });
+  }
+
+  const totalPrice = order.orderItems.reduce((acc, item) => {
+    return acc + item.quantity * item.product.price;
+  }, 0);
+
+  order.totalPrice = totalPrice;
+  await order.save();
+
+  res.status(200).json(order);
+};
+
+const placeOrder = async (req, res) => {
+  const { name, surname, email, phoneNumber, city, comment } = req.body;
+  const { orderId } = req.params;
+
+  const order = await Order.findById(orderId).populate({
+    path: "orderItems",
+    populate: { path: "product" },
+  });
+  // console.log(order);
+
+  if (!order) {
+    return res.status(404).json({ message: "Замовлення не знайдено" });
+  }
+
+  order.customerInfo = { name, surname, email, phoneNumber, city, comment };
+  order.status = "processing";
+  await order.save();
+
+  res.status(200).json({ message: "Замовлення успішно оформлено", order });
+};
+
 module.exports = {
   addToCart: ctrlWrapper(addToCart),
   getAllOrders: ctrlWrapper(getAllOrders),
   updateBookQuantity: ctrlWrapper(updateBookQuantity),
   deleteOrder: ctrlWrapper(deleteOrder),
   deleteOrderItem: ctrlWrapper(deleteOrderItem),
+  getOrderById: ctrlWrapper(getOrderById),
+  placeOrder: ctrlWrapper(placeOrder),
 };

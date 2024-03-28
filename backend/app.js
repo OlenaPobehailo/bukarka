@@ -14,6 +14,7 @@ const newsletterRouter = require("./routes/api/newsletter");
 const booksRouter = require("./routes/api/books");
 const categoriesRouter = require("./routes/api/categories");
 const ordersRouter = require("./routes/api/orders");
+const novaPoshtaRouter = require("./routes/api/novaposhta");
 
 const app = express();
 
@@ -31,10 +32,10 @@ app.use("/api/newsletter", newsletterRouter);
 app.use("/api/books", booksRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/orders", ordersRouter);
-<<<<<<< Updated upstream
-=======
 app.use("/api/novaposhta", novaPoshtaRouter);
->>>>>>> Stashed changes
+
+app.use('/api/novaposhta', novaPoshtaRouter);
+
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
