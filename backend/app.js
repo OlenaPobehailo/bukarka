@@ -10,6 +10,7 @@ const swaggerDocument = require("./swagger.json");
 
 const authRouter = require("./routes/api/auth");
 const profileRouter = require("./routes/api/profile");
+const newsletterRouter = require("./routes/api/newsletter");
 const booksRouter = require("./routes/api/books");
 const categoriesRouter = require("./routes/api/categories");
 const ordersRouter = require("./routes/api/orders");
@@ -27,9 +28,12 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
 app.use("/api/profile", profileRouter);
+app.use("/api/newsletter", newsletterRouter);
 app.use("/api/books", booksRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/orders", ordersRouter);
+app.use("/api/novaposhta", novaPoshtaRouter);
+
 app.use('/api/novaposhta', novaPoshtaRouter);
 
 

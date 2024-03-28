@@ -22,7 +22,7 @@ const login = asyncHandler(async (req, res) => {
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1d" });
   await User.findByIdAndUpdate(user._id, { token });
   if (user && passwordCompare) {
-    const { id, name, surname, email, phone, role, subscription } = user;
+    const { id, name, surname, email, phone, role, bookClub } = user;
 
     res.status(200).json({
       status: 200,
@@ -35,7 +35,7 @@ const login = asyncHandler(async (req, res) => {
         email,
         phone,
         role,
-        subscription,
+        bookClub,
       },
     });
   } else {
