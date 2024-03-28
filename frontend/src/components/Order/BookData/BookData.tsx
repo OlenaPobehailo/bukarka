@@ -1,11 +1,13 @@
-import React from 'react'
+import { SubTitleBlue } from "../OrderCommonStyled";
+import { BookDataWrapper } from "./BookData.styled";
 
-const BookData:React.FC = () => {
+const BookData: React.FC = () => {
   return (
-    <div>
+    <BookDataWrapper>
+      <SubTitleBlue>Ваше замовлення</SubTitleBlue>
       BookData
-    </div>
-  )
-}
+    </BookDataWrapper>
+  );
+};
 
-export default BookData
+export default BookData;

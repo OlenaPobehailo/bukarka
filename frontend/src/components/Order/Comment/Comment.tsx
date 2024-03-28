@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Label, SubTitle, Wrapper } from "../OrderCommonStyled";
+import { SubTitle, Wrapper } from "../OrderCommonStyled";
 import { Textarea } from "./Comment.styled";
 
 const Comment: React.FC = () => {

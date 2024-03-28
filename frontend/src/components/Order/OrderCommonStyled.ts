@@ -46,6 +46,13 @@ export const SubTitle = styled.h2`
     background: var(--bukarka-orange);
   }
 `;
+
+export const SubTitleBlue = styled(SubTitle)`
+  &::before {
+    background-color: var(--bukarka-blue);
+  }
+`;
+
 export const Label = styled.label`
   display: block;
   margin-bottom: 8px;
