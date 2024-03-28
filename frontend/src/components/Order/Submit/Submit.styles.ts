@@ -71,6 +71,7 @@ export const SubmitButton = styled.button`
   font-family: var(--bold);
   font-size: 16px;
   line-height: 1.5;
+  transition: box-shadow 0.3s ease, color 0.3s ease, background-color 0.3s ease;
 
   &:hover,
   &:focus {
@@ -98,6 +99,7 @@ export const ContinueButton = styled.button`
   font-family: var(--semibold);
   font-size: 16px;
   line-height: 1.5;
+  transition: box-shadow color 0.3s ease;
 
   &:hover,
   &:focus {

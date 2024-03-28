@@ -12,7 +12,6 @@ import {
 } from "./Delivery.styled";
 import getNovaPoshtaCities from "helpers/getNovaPoshtaCities";
 
-
 const Delivery: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
   const [showOptions, setShowOptions] = useState(false);
@@ -33,10 +32,28 @@ const Delivery: React.FC = () => {
     fetchCities();
   }, []);
 
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick);
+  
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
+    setShowOptions(e.target.value.trim() !== "")
     setShowOptions(true);
   };
+
+  const handleOutsideClick = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest(".Options")) {
+      setShowOptions(false); // При кліку поза елементом Options підказки зникають
+    }
+  };
+  
 
   const handleOptionClick = (value: string) => {
     setInputValue(value);
@@ -62,8 +79,9 @@ const Delivery: React.FC = () => {
         <Options>
           {options
             .filter((option) =>
-              option.toLowerCase().includes(inputValue.toLowerCase())
+              option.toLowerCase().startsWith(inputValue.toLowerCase())
             )
+            .slice(0, 3)
             .map((option) => (
               <Option key={option} onClick={() => handleOptionClick(option)}>
                 {option}
@@ -113,7 +131,10 @@ const Delivery: React.FC = () => {
       </RadioWrapper>
 
       <Label>Введіть адресу доставки*</Label>
-      <AddressInput type="text" placeholder="Наприклад, бульвар Т.Шевченко, буд. 20, кв. 15" />
+      <AddressInput
+        type="text"
+        placeholder="Наприклад, бульвар Т.Шевченко, буд. 20, кв. 15"
+      />
     </Wrapper>
   );
 };

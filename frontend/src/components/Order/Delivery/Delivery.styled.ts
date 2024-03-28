@@ -17,7 +17,13 @@ export const CityInput = styled.input`
   padding: 8px 16px;
   width: 384px;
   height: 40px;
+  
   background-color: #fff;
+  color: var(--bukarka-black);
+
+  font-family: var(--regular);
+  font-size: 16px;
+  line-height: 1.5;
 
   &::placeholder {
     font-family: var(--regular);
@@ -29,19 +35,28 @@ export const CityInput = styled.input`
 
 export const Options = styled.div`
   position: absolute;
+  width: 384px;
+  margin-top: -31px;
   z-index: 1;
   background-color: #fff;
   border: 1px solid #ccc;
   max-height: 150px;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 `;
 
 export const Option = styled.div`
   padding: 8px;
+
+  font-family: var(--regular);
+  font-size: 14px;
+
+  line-height: 1.43;
+  color: #000;
+
   cursor: pointer;
 
   &:hover {
-    background-color: #f0f0f0;
+    color: var(--bukarka-blue);
   }
 `;
 

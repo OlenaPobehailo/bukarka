@@ -23,6 +23,11 @@ export const Input = styled.input`
   padding: 8px 16px;
   height: 40px;
 
+  color: var(--bukarka-black);
+  font-family: var(--regular);
+  font-size: 16px;
+  line-height: 1.5;
+
   &::placeholder {
     font-family: var(--regular);
     font-size: 16px;
