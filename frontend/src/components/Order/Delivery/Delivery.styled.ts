@@ -1,4 +1,3 @@
-import { Arrow } from "assets/icons";
 import styled from "styled-components";
 
 export const FreeInfo = styled.p`
