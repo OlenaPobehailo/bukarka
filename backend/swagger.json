@@ -32,6 +32,10 @@
     {
       "name": "Profile",
       "description": "User's profile endpoints"
+    },
+    {
+      "name": "Newsletter",
+      "description": "Newsletter subscription endpoints"
     }
   ],
   "paths": {
@@ -462,12 +466,215 @@
               }
             }
           },
-          "400":{
+          "409":{
+            "description": "Conflict",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsletterConflictResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/newsletter/deactivate": {
+      "get": {
+        "tags":["Profile"],
+        "summary": "Deactivate newsletter subscribtion",
+        "parameters":[],
+        "security": [{ "Bearer": [] }],
+        "requestBody":{},
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeactivateNewsletterResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictDeactivateResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "404":{
+            "description": "Not found",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsletterErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/newsletter/subscribe": {
+      "post":{
+        "tags":["Newsletter"],
+        "summary": "Subscription for newsletter",
+        "parameters":[],
+        "requestBody":{
+          "description": "Subscribe object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+          "description": "Ok",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeResponse"
+              }
+            }
+          }
+          },
+          "409": {
+            "description": "Conflict",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscribeErrorResponse"
+                }
+              }
+            }
+          },
+          "400": {
             "description": "Bad request",
             "content":{
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NewsletterBadRequestResponse"
+                  "$ref": "#/components/schemas/SubscribeBadRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/newsletter/subscribe/{subscribeToken}": {
+      "get":{
+        "tags":["Newsletter"],
+        "summary": "Activate newsletter subscribtion",
+        "parameters":[
+          {
+            "name": "subscribeToken",
+            "in": "path",
+            "description": "Subscribe token from the letter sent to the email",
+            "required": true,
+            "schema": {
+              "type": "string",
+							"example": "06ea6bcd9f79a27816f4a0753947607d8b091f9990ca87501b00bb87abf93808"
+            }
+          }
+        ],
+        "requestBody": {},
+        "responses": {
+          "200":{
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsletterSubscribeActivateResponse"
+                }
+              }
+            }
+          },
+          "404":{
+            "description": "Not found",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsletterErrorResponse"
+                }
+              }
+            }
+          },
+          "409":{
+            "description": "Conflict",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionConflictResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/newsletter/unsubscribe/{unsubscribeToken}": {
+      "get":{
+        "tags":["Newsletter"],
+        "summary": "Unsubscribe from newsletter",
+        "parameters":[
+          {
+            "name": "unsubscribeToken",
+            "in": "path",
+            "description": "Unsubscribe token from link in the letter sent to the email",
+            "required": true,
+            "schema": {
+              "type": "string",
+							"example": "dd39dbfc6e47e965b6eb56be488be1aeb509d830"
+            }
+          }
+        ],
+        "requestBody": {},
+        "responses": {
+          "200":{
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsletterUnsubscribeResponse"
+                }
+              }
+            }
+          },
+          "404":{
+            "description": "Not found",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsletterErrorResponse"
+                }
+              }
+            }
+          },
+          "409":{
+            "description": "Conflict",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsubscribeConflictResponse"
                 }
               }
             }
@@ -1362,7 +1569,7 @@
                 "description": "User permition",
                 "example": "customer"
               },
-              "subscription": {
+              "bookClub": {
                 "type": "string",
                 "description": "User status",
                 "example": "beginner"
@@ -1462,7 +1669,7 @@
                 "description": "User permition",
                 "example": "customer"
               },
-              "subscription": {
+              "bookClub": {
                 "type": "string",
                 "description": "User status",
                 "example": "beginner"
@@ -1525,7 +1732,7 @@
                 "description": "User permition",
                 "example": "customer"
               },
-              "subscription": {
+              "bookClub": {
                 "type": "string",
                 "description": "User status",
                 "example": "beginner"
@@ -1663,7 +1870,7 @@
                 "description": "User's email",
                 "example": "shevchenko@gmail.com"
               },
-              "subscription": {
+              "bookClub": {
                 "type": "string",
                 "description": "User status",
                 "example": "beginner"
@@ -1774,7 +1981,7 @@
                 "description": "User's email",
                 "example": "cikove6410@glaslack.com"
               },
-              "subscription": {
+              "bookClub": {
                 "type": "string",
                 "description": "User status",
                 "example": "beginner"
@@ -1820,12 +2027,106 @@
 					}
 				}
       },
-      "NewsletterBadRequestResponse": {
+      "NewsletterConflictResponse": {
         "type": "object",
 				"properties": {
 					"message": {
 						"type": "string",
 						"example": "Your newsletter subscription already activated"
+					}
+				}
+      },
+      "DeactivateNewsletterResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Newsletter deactivate success"
+					}
+				}
+      },
+      "ConflictDeactivateResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Newsletter already deactivated"
+					}
+				}
+      },
+      "SubscribeRequest": {
+        "type": "object",
+        "required": ["email"],
+        "properties":{
+          "email":{
+            "type": "string",
+						"description": "User's email",
+						"format": "email",
+						"pattern": "/^w+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$/",
+            "example": "shevchenko@gmail.com"
+          }
+        }
+      },
+      "SubscribeResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Newslatter subscription instruction was sent to your email: shevchenko@gmail.com!"
+					}
+				}
+      },
+      "SubscribeBadRequestResponse":{
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Please enter email"
+					}
+				}
+      },
+      "SubscribeErrorResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Subscription letter has already sent. Check your email"
+					}
+				}
+      },
+      "NewsletterSubscribeActivateResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Subscription for newsletter activate success"
+					}
+				}
+      },
+      "SubscriptionConflictResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Your newsletter subscription already activated"
+					}
+				}
+      },
+      "NewsletterUnsubscribeResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "You unsubscribe from newsletter success"
+					}
+				}
+      },
+      "UnsubscribeConflictResponse": {
+        "type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Your already unsubscribed from newsletter"
 					}
 				}
       },

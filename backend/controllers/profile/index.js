@@ -3,6 +3,10 @@ const {
   editProfile,
   newsletter,
   activateNewsleter,
+  deactivateNewslette,
+  subscribe,
+  activateSubscription,
+  unsubscribe,
 } = require("./settings/settings");
 
 module.exports = {
@@ -10,4 +14,8 @@ module.exports = {
   editProfile,
   newsletter,
   activateNewsleter,
+  deactivateNewslette,
+  subscribe,
+  activateSubscription,
+  unsubscribe,
 };

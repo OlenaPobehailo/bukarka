@@ -79,7 +79,7 @@ const userSchema = new Schema(
       default: "customer",
       enum: ["customer", "admin"],
     },
-    subscription: {
+    bookClub: {
       type: String,
       enum: ["beginner", "club"],
       default: "beginner",

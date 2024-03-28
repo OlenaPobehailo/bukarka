@@ -16,6 +16,12 @@ router.get(
   "/newsletter/activate/:activateToken",
   profileController.activateNewsleter
 );
+router.get(
+  "/newsletter/deactivate",
+  authenticate,
+  profileController.deactivateNewslette
+);
+
 router.get("/orders");
 router.get("/bonuses");
 
