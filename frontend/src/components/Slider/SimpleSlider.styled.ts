@@ -24,7 +24,7 @@ export const StyledPrevArrow = styled.div`
   cursor: pointer;
   z-index: 100;
   &:hover svg path {
-    stroke: #3D7EFD;
+    stroke: #3d7efd;
   }
 `;
 
@@ -40,7 +40,7 @@ export const StyledNextArrow = styled.div`
   height: 64px;
   cursor: pointer;
   &:hover svg path {
-      stroke: #3D7EFD;
+    stroke: #3d7efd;
   }
 `;
 

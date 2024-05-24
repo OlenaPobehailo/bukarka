@@ -31,6 +31,12 @@ export const Label = styled.p`
   }
 `;
 
+export const Wrapper = styled.div`
+  width: 100%;
+  height: auto;
+  padding: 56px 96px;
+`;
+
 export const GridPageWrapper = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
@@ -79,20 +85,19 @@ export const SubscribeWrapperGrid = styled.div`
   justify-self: center;
 `;
 
-
 export const TextAccent = styled.p`
   font-family: var(--regular);
   font-size: 14px;
   line-height: 1.43;
   color: var(--bukarka-deep-blue);
-  `;
+`;
 
 export const StyledList = styled.ol`
   font-weight: 400;
   font-size: 14px;
   line-height: 1.43;
   list-style-position: inside;
-    
+
   li {
     margin-bottom: 20px;
     list-style-type: decimal;
@@ -113,7 +118,7 @@ export const StyledList = styled.ol`
     line-height: 1.43;
     color: var(--bukarka-black);
   }
-  
+
   h4 {
     display: inline;
     font-family: var(--regular);
@@ -143,7 +148,14 @@ export const Title = styled.h1`
   color: var(--bukarka-black);
 `;
 
-  export const SubscribeWrapper = styled.div`
-    margin: 96px auto 0;
-    padding-right: 32px;
-  `;
+export const SubscribeWrapper = styled.div`
+  margin: 96px auto 0;
+  padding-right: 32px;
+`;
+
+export const FlexWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+`;
