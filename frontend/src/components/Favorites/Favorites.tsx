@@ -1,8 +1,9 @@
-import { IBooksData } from "components/Book/Book.types";
+import { IBookItem, IBooksData } from "components/Book/Book.types";
 import CartItem from "components/Home/CartItem/CartItem";
 import { FlexWrapper, Label, Wrapper } from "pages/CommonPages.styled";
 
 const Favorites: React.FC<IBooksData> = ({ data }) => {
+  console.log(data);
   return (
     <Wrapper>
       <Label>Обране</Label>
@@ -16,6 +17,7 @@ const Favorites: React.FC<IBooksData> = ({ data }) => {
             price={item.price}
             index={index}
             rating={item.rating}
+            key={index}
           />
         ))}
       </FlexWrapper>

@@ -14,9 +14,12 @@ export interface IBooksResponseData {
 
 export interface IBooksData {
   data: IBookItem[];
+  limit?: number;
+  total?: number;
+  page?: string;
 }
 
 export interface BooksContextType {
-  booksData: IBooksData;
+  booksData: IBookItem[];
   favorites: string[];
 }
