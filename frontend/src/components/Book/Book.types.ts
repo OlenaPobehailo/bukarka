@@ -22,4 +22,6 @@ export interface IBooksData {
 export interface BooksContextType {
   booksData: IBookItem[];
   favorites: string[];
+  addFavorite: (_id: string) => void;
+  removeFavorite: (_id: string) => void;
 }

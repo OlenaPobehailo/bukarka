@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 
 interface StyledHeartProps extends React.HTMLAttributes<HTMLDivElement> {
-  isFavorite: boolean;
+  isfavorite: boolean;
 }
 export const StyledHeart = styled.div<StyledHeartProps>`
   svg path:hover {
@@ -11,6 +11,6 @@ export const StyledHeart = styled.div<StyledHeartProps>`
   }
 
   svg path {
-    fill: ${(props) => (props.isFavorite ? "#3D7EFD" : "#FFFBFF")};
+    fill: ${(props) => (props.isfavorite ? "#3D7EFD" : "#FFFBFF")};
   }
 `;

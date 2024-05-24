@@ -46,6 +46,14 @@ export const BooksContextProvider: React.FC<{ children: ReactNode }> = ({
   const [booksData, setBooksData] = useState<IBookItem[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
 
+  const addFavorite = (id: string) => {
+    setFavorites((prevFavorites) => [...prevFavorites, id]);
+  };
+
+  const removeFavorite = (id: string) => {
+    setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav !== id));
+  };
+
   useEffect(() => {
     const loadBooks = async () => {
       try {
@@ -61,14 +69,19 @@ export const BooksContextProvider: React.FC<{ children: ReactNode }> = ({
   }, []);
 
   useEffect(() => {
-    let savedFavorites = JSON.parse(localStorage.getItem("favorites") || "");
-    savedFavorites = Object.keys(savedFavorites);
+    let savedFavorites = JSON.parse(localStorage.getItem("favorites") || "{}");
 
     setFavorites(savedFavorites);
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
   return (
-    <BooksContext.Provider value={{ booksData, favorites }}>
+    <BooksContext.Provider
+      value={{ booksData, favorites, addFavorite, removeFavorite }}
+    >
       {children}
     </BooksContext.Provider>
   );

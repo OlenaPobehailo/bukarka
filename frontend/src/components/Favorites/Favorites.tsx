@@ -7,18 +7,22 @@ const Favorites: React.FC<IBooksData> = ({ data }) => {
     <Wrapper>
       <Label>Обране</Label>
       <FlexWrapper>
-        {data.map((item, index) => (
-          <CartItem
-            _id={item._id}
-            title={item.title}
-            author={item.author}
-            image={item.image}
-            price={item.price}
-            index={index}
-            rating={item.rating}
-            key={index}
-          />
-        ))}
+        {data.length ? (
+          data.map((item, index) => (
+            <CartItem
+              _id={item._id}
+              title={item.title}
+              author={item.author}
+              image={item.image}
+              price={item.price}
+              index={index}
+              rating={item.rating}
+              key={index}
+            />
+          ))
+        ) : (
+          <div>No favorite books</div>
+        )}
       </FlexWrapper>
     </Wrapper>
   );
