@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CartItem from "../CartItem";
@@ -32,6 +33,8 @@ const CartList: React.FC<CartListProps> = ({ closeCart }) => {
 
   const ordersId = cartData?._id;
 
+  const [totalPrice, setTotalPrice] = useState(cartData?.totalPrice || 0);
+
   const handleDelete = async () => {
     clearOrderData();
     await dispatch(deleteOrder(ordersId!)).then(() => {
@@ -41,6 +44,20 @@ const CartList: React.FC<CartListProps> = ({ closeCart }) => {
       });
     });
   };
+
+  const recalculateTotalPrice = useCallback(() => {
+    if (cartData) {
+      const updatedTotalPrice = cartData.orderItems.reduce(
+        (total, item) => total + item.product.price * item.quantity,
+        0
+      );
+      setTotalPrice(updatedTotalPrice);
+    }
+  }, [cartData]);
+
+  useEffect(() => {
+    recalculateTotalPrice();
+  }, [cartData, recalculateTotalPrice]);
 
   const totalBooks = cartData?.orderItems.reduce(
     (total, item) => total + item.quantity,
@@ -78,7 +95,11 @@ const CartList: React.FC<CartListProps> = ({ closeCart }) => {
       <ListWrapper>
         {cartData &&
           cartData.orderItems.map((item: any) => (
-            <CartItem item={item} key={item._id} />
+            <CartItem
+              item={item}
+              key={item._id}
+              onDelete={recalculateTotalPrice}
+            />
           ))}
       </ListWrapper>
 

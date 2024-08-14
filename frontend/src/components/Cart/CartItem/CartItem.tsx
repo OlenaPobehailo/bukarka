@@ -40,9 +40,11 @@ type CartItemProps = {
       image: string | null;
     };
   };
+
+  onDelete: () => void;
 };
 
-const CartItem: React.FC<CartItemProps> = ({ item }) => {
+const CartItem: React.FC<CartItemProps> = ({ item, onDelete }) => {
   const { _id, quantity } = item;
   const { title, author, price, image } = item.product;
   const { imagePlaceholder } = images;
@@ -55,6 +57,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
     if (orderId) {
       await dispatch(deleteItem(id));
       await dispatch(fetchOrderById(orderId));
+      onDelete();
     }
   };
 
